@@ -37,8 +37,8 @@
     <AlternateFilename>Untitled-1_alternate.html</AlternateFilename>
     <UsingOwnAlternateFile>0</UsingOwnAlternateFile>
     <OwnAlternateFilename></OwnAlternateFilename>
-    <Width>550</Width>
-    <Height>400</Height>
+    <Width>800</Width>
+    <Height>600</Height>
     <Align>0</Align>
     <Units>0</Units>
     <Loop>1</Loop>
@@ -110,8 +110,8 @@
     <TelemetryPassword></TelemetryPassword>
   </PublishFlashProperties>
   <PublishJpegProperties enabled="true">
-    <Width>550</Width>
-    <Height>400</Height>
+    <Width>800</Width>
+    <Height>600</Height>
     <Progressive>0</Progressive>
     <DPI>4718592</DPI>
     <Size>0</Size>
@@ -119,8 +119,8 @@
     <MatchMovieDim>1</MatchMovieDim>
   </PublishJpegProperties>
   <PublishGifProperties enabled="true">
-    <Width>550</Width>
-    <Height>400</Height>
+    <Width>800</Width>
+    <Height>600</Height>
     <Animated>0</Animated>
     <MatchMovieDim>1</MatchMovieDim>
     <Loop>1</Loop>
