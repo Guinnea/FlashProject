@@ -4,18 +4,18 @@
           <Include href="world.xml" itemID="5728f764-00000005" lastModified="1462302880"/>
      </symbols>
      <timelines>
-          <DOMTimeline name="Scene 1" currentFrame="1">
+          <DOMTimeline name="Scene 1">
                <layers>
                     <DOMLayer name="Scene" color="#4F80FF" autoNamed="false">
                          <frames>
-                              <DOMFrame index="0" duration="2" keyMode="9728">
+                              <DOMFrame index="0" keyMode="9728">
                                    <elements/>
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
                     <DOMLayer name="Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
                          <frames>
-                              <DOMFrame index="0" duration="2" keyMode="9728">
+                              <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
                                         <script><![CDATA[import flash.events.Event;
 import flash.events.KeyboardEvent;
@@ -30,33 +30,26 @@ stage.addEventListener(KeyboardEvent.KEY_DOWN, startSpin);
 stage.addEventListener(KeyboardEvent.KEY_UP, stopSpin) 
 stage.addEventListener(Event.ENTER_FRAME, monitorKeyboardState);
 
-var initialize = false;
-if(initialize == false){ Initialize();}
+World1.visible = true;
+World1.x = 400;
+World1.y = 300;
+World1.rotationSpeed = 1;
+World1.leftDown = false;
+World1.rightDown = false;
 
-function Initialize():void{
-	World1.visible = true;
-	World1.x = 400;
-	World1.y = 300;
-	World1.rotationSpeed = 1;
-	World1.leftDown = false;
-	World1.rightDown = false;
-
-	player.visible = true;
-	player.x = 400;
-	player.y = 135;
-	player.ang = 0; // angle
-	player.angleSpeed = 1;
-	initialize = true;
-}
-
-
+player.visible = true;
+player.x = 400;
+player.y = 135;
+player.ang = 0; // angle
+player.angleSpeed = 1;
 
 function monitorKeyboardState(e:Event):void {
 	if(World1.leftDown == true){
-		//player.ang -= player.angleSpeed;
-		//if(player.ang <=0){ player.ang +=360;}
-		//player.x = (Math.sin(AngleToRadians(player.ang)) * 200) + 400;
-		//player.y = (Math.cos(AngleToRadians(player.ang)) * 200) + 135;
+		player.ang -= player.angleSpeed;
+		if(player.ang <=0){ player.ang +=360;}
+		player.x = (Math.sin(AngleToRadians(player.ang)) * 163) + 400;
+		player.y = (Math.cos(AngleToRadians(player.ang)) * 163) + 300;
+		player.rotation +=World1.rotationSpeed;
 		World1.rotation -=World1.rotationSpeed;
 	}
 	if(World1.rightDown == true){
@@ -82,12 +75,11 @@ function startSpin(e:KeyboardEvent):void{
 	}
 }
 
-/*
 function AngleToRadians( angle ){
 	var returnAngle = Math.PI * angle / 180;
 	return returnAngle;
 }
-*/
+
 ]]></script>
                                    </Actionscript>
                                    <elements/>
@@ -97,27 +89,16 @@ function AngleToRadians( angle ){
                </layers>
           </DOMTimeline>
      </timelines>
+     <persistentData>
+          <PD n="DebugMovieChecked" v="FlashPro"/>
+     </persistentData>
      <PrinterSettings/>
      <publishHistory>
-          <PublishItem publishSize="1649" publishTime="1462306803" publishDebug="true"/>
-          <PublishItem publishSize="1736" publishTime="1462306768" publishDebug="true"/>
-          <PublishItem publishSize="1670" publishTime="1462306539" publishDebug="true"/>
-          <PublishItem publishSize="1556" publishTime="1462306450" publishDebug="true"/>
-          <PublishItem publishSize="1489" publishTime="1462306284" publishDebug="true"/>
-          <PublishItem publishSize="1649" publishTime="1462306239" publishDebug="true"/>
-          <PublishItem publishSize="1729" publishTime="1462306185" publishDebug="true"/>
-          <PublishItem publishSize="1730" publishTime="1462306108" publishDebug="true"/>
-          <PublishItem publishSize="1730" publishTime="1462306070" publishDebug="true"/>
-          <PublishItem publishSize="1730" publishTime="1462306042" publishDebug="true"/>
-          <PublishItem publishSize="1728" publishTime="1462306031" publishDebug="true"/>
-          <PublishItem publishSize="1731" publishTime="1462306007" publishDebug="true"/>
-          <PublishItem publishSize="1731" publishTime="1462305974" publishDebug="true"/>
-          <PublishItem publishSize="1531" publishTime="1462305426" publishDebug="true"/>
-          <PublishItem publishSize="1534" publishTime="1462305418" publishDebug="true"/>
-          <PublishItem publishSize="1534" publishTime="1462305398" publishDebug="true"/>
-          <PublishItem publishSize="1529" publishTime="1462305353" publishDebug="true"/>
-          <PublishItem publishSize="1395" publishTime="1462305032" publishDebug="true"/>
-          <PublishItem publishSize="1395" publishTime="1462305013" publishDebug="true"/>
-          <PublishItem publishSize="1393" publishTime="1462304994" publishDebug="true"/>
+          <PublishItem publishSize="1750" publishTime="1462307651" publishDebug="true"/>
+          <PublishItem publishSize="1750" publishTime="1462307639" publishDebug="true"/>
+          <PublishItem publishSize="1745" publishTime="1462307599" publishDebug="true"/>
+          <PublishItem publishSize="1744" publishTime="1462307583" publishDebug="true"/>
+          <PublishItem publishSize="1744" publishTime="1462307548" publishDebug="true"/>
+          <PublishItem publishSize="1747" publishTime="1462307538" publishDebug="true"/>
      </publishHistory>
 </DOMDocument>
