@@ -1,7 +1,10 @@
 <DOMDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" width="800" height="600" frameRate="30" currentTimeline="1" xflVersion="2.6" creatorInfo="Adobe Flash Professional CC" platform="Windows" versionInfo="Saved by Adobe Flash Windows 15.0 build 173" majorVersion="15" buildNumber="173" timelineLabelWidth="241" viewAngle3D="74.2651684569298" nextSceneIdentifier="2" playOptionsPlayLoop="false" playOptionsPlayPages="false" playOptionsPlayFrameActions="false" filetypeGUID="DD0DDBBF-5BEF-45B2-9F24-A3048D2A676F">
+     <fonts>
+          <DOMFontItem name="Font 1" itemID="57324e8a-00000043" linkageExportForAS="true" linkageBaseClass="flash.text.Font" linkageClassName="Font1" font="ArialMT" size="0" id="1" sourceLastImported="1462914755" embeddedCharacters="." embedRanges="3"/>
+     </fonts>
      <symbols>
           <Include href="dude.xml" itemID="572901cb-0000001d" lastModified="1462305227"/>
-          <Include href="EditorMenu.xml" itemID="573244f6-00000018" lastModified="1462913398"/>
+          <Include href="EditorMenu.xml" itemID="573244f6-00000018" lastModified="1462915075"/>
           <Include href="menuButtonClose.xml" itemIcon="0" loadImmediate="false" itemID="573249cb-00000035" lastModified="1462913483"/>
           <Include href="menuButtonOpen.xml" itemIcon="0" loadImmediate="false" itemID="573249c2-00000034" lastModified="1462913509"/>
           <Include href="world.xml" itemID="5728f764-00000005" lastModified="1462302880"/>
@@ -16,21 +19,47 @@
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="Master Script" color="#00FF00" current="true" isSelected="true" autoNamed="false">
+                    <DOMLayer name="Master Script" color="#00FF00" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
-                                        <script><![CDATA[/**************************************/
+                                        <script><![CDATA[import fl.motion.MotionEvent;
+import flash.events.MouseEvent;
+
+/**************************************/
 /** 		Master script			 **/
 /**************************************/
 
+openEditor.addEventListener(MouseEvent.CLICK, openEditorMenu);
+
+var editorMenu:EditorMenu_ = new EditorMenu_;
+editorMenu.closeMenu.addEventListener(MouseEvent.CLICK, closeEditorMenu);
+
+editorMenu.visible = false;
+editorMenu.x=5;
+editorMenu.y=5;
+
+stage.addChild(editorMenu);
+
+// when the menu is closed.
+var changeMade = false;
+
+function openEditorMenu(e:MouseEvent):void {
+	editorMenu.visible = true;
+}
+
+function closeEditorMenu(e:MouseEvent):void{
+	editorMenu.visible = false;
+	changeMade = true;
+}
+
 // player attributes
 var playerAttributes = {
-	rotationSpeed:2,
+	rotationSpeed:Number(editorMenu.textPlayerSpeed.text),
 	leftDown:false,
 	rightDown:false,
 	ang:180,
-	angleSpeed:2
+	angleSpeed:Number(editorMenu.textPlayerSpeed.text)
 };
 
 // world attributes
@@ -43,7 +72,7 @@ var worldAttributes = {
 };]]></script>
                                    </Actionscript>
                                    <elements>
-                                        <DOMSymbolInstance libraryItemName="menuButtonOpen" symbolType="button">
+                                        <DOMSymbolInstance libraryItemName="menuButtonOpen" name="openEditor" symbolType="button">
                                              <matrix>
                                                   <Matrix tx="70" ty="20"/>
                                              </matrix>
@@ -129,7 +158,7 @@ function AngleToRadians( angle ){
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="World Script" color="#4F80FF" autoNamed="false">
+                    <DOMLayer name="World Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -184,6 +213,28 @@ function startWorldSpin(e:KeyboardEvent):void{
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
+                    <DOMLayer name="Last Script" color="#9933CC" autoNamed="false">
+                         <frames>
+                              <DOMFrame index="0" keyMode="9728">
+                                   <Actionscript>
+                                        <script><![CDATA[import flash.events.Event;
+
+stage.addEventListener(Event.ENTER_FRAME, MonitorGameState);
+
+function MonitorGameState(e:Event):void {
+	if(changeMade == true){
+		player.playerAttributes.rotationSpeed = Number(editorMenu.textPlayerSpeed.text);
+		player.playerAttributes.angleSpeed = Number(editorMenu.textPlayerSpeed.text);
+		changeMade = false;
+	}
+}
+
+]]></script>
+                                   </Actionscript>
+                                   <elements/>
+                              </DOMFrame>
+                         </frames>
+                    </DOMLayer>
                </layers>
           </DOMTimeline>
      </timelines>
@@ -192,6 +243,19 @@ function startWorldSpin(e:KeyboardEvent):void{
      </persistentData>
      <PrinterSettings/>
      <publishHistory>
+          <PublishItem publishSize="9867" publishTime="1462915509" publishDebug="true"/>
+          <PublishItem publishSize="9867" publishTime="1462915395" publishDebug="true"/>
+          <PublishItem publishSize="9852" publishTime="1462915348" publishDebug="true"/>
+          <PublishItem publishSize="9765" publishTime="1462915081" publishDebug="true"/>
+          <PublishItem publishSize="9767" publishTime="1462914992" publishDebug="true"/>
+          <PublishItem publishSize="9780" publishTime="1462914925" publishDebug="true"/>
+          <PublishItem publishSize="9711" publishTime="1462914763" publishDebug="true"/>
+          <PublishItem publishSize="8285" publishTime="1462914648" publishDebug="true"/>
+          <PublishItem publishSize="8282" publishTime="1462914578" publishDebug="true"/>
+          <PublishItem publishSize="8288" publishTime="1462914483" publishDebug="true"/>
+          <PublishItem publishSize="8270" publishTime="1462914459" publishDebug="true"/>
+          <PublishItem publishSize="8262" publishTime="1462914384" publishDebug="true"/>
+          <PublishItem publishSize="8218" publishTime="1462914268" publishDebug="true"/>
           <PublishItem publishSize="2036" publishTime="1462911810" publishDebug="true"/>
           <PublishItem publishSize="2020" publishTime="1462911639" publishDebug="true"/>
           <PublishItem publishSize="2019" publishTime="1462911615" publishDebug="true"/>
@@ -199,18 +263,5 @@ function startWorldSpin(e:KeyboardEvent):void{
           <PublishItem publishSize="2018" publishTime="1462911536" publishDebug="true"/>
           <PublishItem publishSize="2018" publishTime="1462911523" publishDebug="true"/>
           <PublishItem publishSize="2025" publishTime="1462911456" publishDebug="true"/>
-          <PublishItem publishSize="2028" publishTime="1462911426" publishDebug="true"/>
-          <PublishItem publishSize="2008" publishTime="1462911245" publishDebug="true"/>
-          <PublishItem publishSize="2007" publishTime="1462911191" publishDebug="true"/>
-          <PublishItem publishSize="2022" publishTime="1462911110" publishDebug="true"/>
-          <PublishItem publishSize="1989" publishTime="1462910962" publishDebug="true"/>
-          <PublishItem publishSize="1990" publishTime="1462910851" publishDebug="true"/>
-          <PublishItem publishSize="2027" publishTime="1462910836" publishDebug="true"/>
-          <PublishItem publishSize="2015" publishTime="1462910617" publishDebug="true"/>
-          <PublishItem publishSize="1967" publishTime="1462910597" publishDebug="true"/>
-          <PublishItem publishSize="2010" publishTime="1462909706" publishDebug="true"/>
-          <PublishItem publishSize="2005" publishTime="1462909574" publishDebug="true"/>
-          <PublishItem publishSize="1566" publishTime="1462912547"/>
-          <PublishItem publishSize="1519" publishTime="1462912465"/>
      </publishHistory>
 </DOMDocument>

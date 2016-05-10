@@ -1,4 +1,4 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="EditorMenu" itemID="573244f6-00000018" linkageExportForAS="true" linkageClassName="EditorMenu_" scaleGridLeft="-321.25" scaleGridRight="-106.75" scaleGridTop="76" scaleGridBottom="229" lastModified="1462913398">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="EditorMenu" itemID="573244f6-00000018" linkageExportForAS="true" linkageClassName="EditorMenu_" scaleGridLeft="-321.25" scaleGridRight="-106.75" scaleGridTop="76" scaleGridBottom="229" lastModified="1462915075">
   <timeline>
     <DOMTimeline name="EditorMenu">
       <layers>
@@ -108,7 +108,7 @@
                     </DOMTextRun>
                   </textRuns>
                 </DOMInputText>
-                <DOMSymbolInstance libraryItemName="menuButtonClose" symbolType="button">
+                <DOMSymbolInstance libraryItemName="menuButtonClose" name="closeMenu" selected="true" symbolType="button">
                   <matrix>
                     <Matrix tx="102.5" ty="272.5"/>
                   </matrix>
