@@ -1,0 +1,126 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="EditorMenu" itemID="573244f6-00000018" linkageExportForAS="true" linkageClassName="EditorMenu_" scaleGridLeft="-321.25" scaleGridRight="-106.75" scaleGridTop="76" scaleGridBottom="229" lastModified="1462913398">
+  <timeline>
+    <DOMTimeline name="EditorMenu">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4F80FF" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#33CCCC"/>
+                    </FillStyle>
+                    <FillStyle index="2">
+                      <SolidColor color="#FFFFFF"/>
+                    </FillStyle>
+                  </fills>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge fillStyle0="1" fillStyle1="2" strokeStyle="1" edges="!3800 600|3800 1100!3800 1100|1800 1100!1800 1100|1800 600!1800 600|3800 600!3800 1800|3800 2300!3800 2300|1800 2300!1800 2300|1800 1800!1800 1800|3800 1800"/>
+                    <Edge fillStyle0="1" edges="!800 5200|3300 5200!3300 5200|3300 5700!3300 5700|800 5700!800 5700|800 5200"/>
+                    <Edge fillStyle1="1" strokeStyle="1" edges="!0 0|4000 0!4000 0|4000 6000!4000 6000|0 6000!0 6000|0 0"/>
+                  </edges>
+                </DOMShape>
+                <DOMStaticText width="116.7" height="17.9" autoExpand="true">
+                  <matrix>
+                    <Matrix tx="12" ty="7"/>
+                  </matrix>
+                  <textRuns>
+                    <DOMTextRun>
+                      <characters>Player Attributes</characters>
+                      <textAttrs>
+                        <DOMTextAttrs aliasText="false" size="16" bitmapSize="320" face="ArialMT"/>
+                      </textAttrs>
+                    </DOMTextRun>
+                  </textRuns>
+                </DOMStaticText>
+                <DOMStaticText width="118" height="15.6">
+                  <matrix>
+                    <Matrix tx="10.7" ty="32"/>
+                  </matrix>
+                  <textRuns>
+                    <DOMTextRun>
+                      <characters>speed</characters>
+                      <textAttrs>
+                        <DOMTextAttrs aliasText="false" size="14" bitmapSize="280" face="ArialMT" fillColor="#333333"/>
+                      </textAttrs>
+                    </DOMTextRun>
+                  </textRuns>
+                </DOMStaticText>
+                <DOMStaticText width="112.85" height="17.9" autoExpand="true">
+                  <matrix>
+                    <Matrix tx="12" ty="67"/>
+                  </matrix>
+                  <textRuns>
+                    <DOMTextRun>
+                      <characters>World Attributes</characters>
+                      <textAttrs>
+                        <DOMTextAttrs aliasText="false" size="16" bitmapSize="320" face="ArialMT"/>
+                      </textAttrs>
+                    </DOMTextRun>
+                  </textRuns>
+                </DOMStaticText>
+                <DOMStaticText width="118" height="15.6">
+                  <matrix>
+                    <Matrix tx="10.7" ty="92"/>
+                  </matrix>
+                  <textRuns>
+                    <DOMTextRun>
+                      <characters>mass</characters>
+                      <textAttrs>
+                        <DOMTextAttrs aliasText="false" size="14" bitmapSize="280" face="ArialMT" fillColor="#333333"/>
+                      </textAttrs>
+                    </DOMTextRun>
+                  </textRuns>
+                </DOMStaticText>
+                <DOMInputText name="textPlayerSpeed" width="96" height="15.6">
+                  <matrix>
+                    <Matrix tx="92" ty="35"/>
+                  </matrix>
+                  <textRuns>
+                    <DOMTextRun>
+                      <characters>2</characters>
+                      <textAttrs>
+                        <DOMTextAttrs aliasText="false" size="14" bitmapSize="280" face="ArialMT" fillColor="#333333"/>
+                      </textAttrs>
+                    </DOMTextRun>
+                  </textRuns>
+                </DOMInputText>
+                <DOMInputText name="textWorldMass" width="96" height="15.6">
+                  <matrix>
+                    <Matrix tx="92" ty="95"/>
+                  </matrix>
+                  <textRuns>
+                    <DOMTextRun>
+                      <characters>2</characters>
+                      <textAttrs>
+                        <DOMTextAttrs aliasText="false" size="14" bitmapSize="280" face="ArialMT" fillColor="#333333"/>
+                      </textAttrs>
+                    </DOMTextRun>
+                  </textRuns>
+                </DOMInputText>
+                <DOMSymbolInstance libraryItemName="menuButtonClose" symbolType="button">
+                  <matrix>
+                    <Matrix tx="102.5" ty="272.5"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>
