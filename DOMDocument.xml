@@ -40,7 +40,7 @@ World1.rightDown = false;
 player.visible = true;
 player.x = 400;
 player.y = 135;
-player.ang = 0; // angle
+player.ang = 180; // angle
 player.angleSpeed = 1;
 
 function monitorKeyboardState(e:Event):void {
@@ -53,6 +53,11 @@ function monitorKeyboardState(e:Event):void {
 		World1.rotation -=World1.rotationSpeed;
 	}
 	if(World1.rightDown == true){
+		player.ang += player.angleSpeed;
+		if(player.ang >=360){ player.ang -=360;}
+		player.x = (Math.sin(AngleToRadians(player.ang)) * 163) + 400;
+		player.y = (Math.cos(AngleToRadians(player.ang)) * 163) + 300;
+		player.rotation -=World1.rotationSpeed;
 		World1.rotation +=World1.rotationSpeed;
 	}
 }
@@ -94,6 +99,10 @@ function AngleToRadians( angle ){
      </persistentData>
      <PrinterSettings/>
      <publishHistory>
+          <PublishItem publishSize="1774" publishTime="1462909700" publishDebug="true"/>
+          <PublishItem publishSize="1779" publishTime="1462909674" publishDebug="true"/>
+          <PublishItem publishSize="1750" publishTime="1462909603" publishDebug="true"/>
+          <PublishItem publishSize="1464" publishTime="1462905854"/>
           <PublishItem publishSize="1750" publishTime="1462307651" publishDebug="true"/>
           <PublishItem publishSize="1750" publishTime="1462307639" publishDebug="true"/>
           <PublishItem publishSize="1745" publishTime="1462307599" publishDebug="true"/>
