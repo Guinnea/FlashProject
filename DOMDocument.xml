@@ -16,7 +16,7 @@
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="Master Script" color="#00FF00" current="true" isSelected="true" autoNamed="false">
+                    <DOMLayer name="Master Script" color="#00FF00" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -129,7 +129,7 @@ function AngleToRadians( angle ){
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="World Script" color="#4F80FF" autoNamed="false">
+                    <DOMLayer name="World Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -137,7 +137,6 @@ function AngleToRadians( angle ){
 import flash.events.KeyboardEvent;
 
 var World1:world_ = new world_;
-World1.worldAttributes = worldAttributes;
 
 stage.addChild(World1);
 
@@ -145,39 +144,58 @@ stage.addEventListener(KeyboardEvent.KEY_DOWN, startWorldSpin);
 stage.addEventListener(KeyboardEvent.KEY_UP, stopWorldSpin);
 stage.addEventListener(Event.ENTER_FRAME, monitorWorldKeyboardState);
 
-World1.visible = true;
 World1.x = 400;
 World1.y = 300;
 
+World1.worldAttributes.rotationSpeed = 0;
+World1.worldAttributes.maxRotationSpeed = 2;
+
+World1.worldAttributes.leftDown = false;
+World1.worldAttributes.rightDown = false;
+
+World1.worldAttributes.mass = 5000;
 
 function monitorWorldKeyboardState(e:Event):void {
-	if(World1.worldAttributes.leftDown == true){
-		World1.rotation -=World1.worldAttributes.rotationSpeed;
+	if (World1.leftDown == false && World1.rightDown == false)
+	{
+		if(World1.rotationSpeed < 0)
+		World1.rotationSpeed += (50 / World1.mass);
+		else if (World1.rotationSpeed > 0)
+		World1.rotationSpeed -= (50 / World1.mass);
 	}
-	if(World1.worldAttributes.rightDown == true){
-		World1.rotation +=World1.worldAttributes.rotationSpeed;
+	else if (
+			World1.rotationSpeed < World1.maxRotationSpeed && 
+			World1.rotationSpeed > -World1.maxRotationSpeed)
+	{
+		if(World1.leftDown == true)
+		{
+			World1.rotationSpeed -= (50 / World1.mass);
+		}
+		if(World1.rightDown == true)
+		{
+			World1.rotationSpeed += (50 / World1.mass);
+		}
 	}
+	World1.rotation += World1.rotationSpeed;
 }
 
 function stopWorldSpin(e:KeyboardEvent):void{
 	if(e.keyCode == 39) {
-		World1.worldAttributes.leftDown = false;		
+		World1.leftDown = false;		
 	}
 	if(e.keyCode == 37) {
-		World1.worldAttributes.rightDown = false;		
+		World1.rightDown = false;		
 	}
 }
 
 function startWorldSpin(e:KeyboardEvent):void{
 	if(e.keyCode == 39) {
-		World1.worldAttributes.leftDown = true;		
+		World1.leftDown = true;		
 	}
 	if(e.keyCode == 37) {
-		World1.worldAttributes.rightDown = true;		
+		World1.rightDown = true;		
 	}
 }
-
-
 ]]></script>
                                    </Actionscript>
                                    <elements/>
@@ -192,6 +210,7 @@ function startWorldSpin(e:KeyboardEvent):void{
      </persistentData>
      <PrinterSettings/>
      <publishHistory>
+          <PublishItem publishSize="7764" publishTime="1462917440"/>
           <PublishItem publishSize="2036" publishTime="1462911810" publishDebug="true"/>
           <PublishItem publishSize="2020" publishTime="1462911639" publishDebug="true"/>
           <PublishItem publishSize="2019" publishTime="1462911615" publishDebug="true"/>
@@ -211,6 +230,5 @@ function startWorldSpin(e:KeyboardEvent):void{
           <PublishItem publishSize="2010" publishTime="1462909706" publishDebug="true"/>
           <PublishItem publishSize="2005" publishTime="1462909574" publishDebug="true"/>
           <PublishItem publishSize="1566" publishTime="1462912547"/>
-          <PublishItem publishSize="1519" publishTime="1462912465"/>
      </publishHistory>
 </DOMDocument>
