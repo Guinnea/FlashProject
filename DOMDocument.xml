@@ -13,7 +13,77 @@
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
+                    <DOMLayer name="Player Script" color="#4F80FF" autoNamed="false">
+                         <frames>
+                              <DOMFrame index="0" keyMode="9728">
+                                   <Actionscript>
+                                        <script><![CDATA[import flash.events.Event;
+import flash.events.KeyboardEvent;
+
+var player:dude_ = new dude_;
+
+stage.addChild(player);
+
+stage.addEventListener(KeyboardEvent.KEY_DOWN, startPlayerSpin);
+stage.addEventListener(KeyboardEvent.KEY_UP, stopPlayerSpin) 
+stage.addEventListener(Event.ENTER_FRAME, monitorKeyboardState);
+
+player.visible = true;
+player.x = 400;
+player.y = 135;
+player.rotationSpeed = 1;
+player.leftDown = false;
+player.rightDown = false;
+player.ang = 180; // angle
+player.angleSpeed = 1;
+
+function monitorKeyboardState(e:Event):void {
+	if(player.leftDown == true){
+		player.ang -= player.angleSpeed;
+		if(player.ang <=0){ player.ang +=360;}
+		player.x = (Math.sin(AngleToRadians(player.ang)) * 163) + 400;
+		player.y = (Math.cos(AngleToRadians(player.ang)) * 163) + 300;
+		player.rotation +=player.rotationSpeed;
+	}
+	if(player.rightDown == true){
+		player.ang += player.angleSpeed;
+		if(player.ang >=360){ player.ang -=360;}
+		player.x = (Math.sin(AngleToRadians(player.ang)) * 163) + 400;
+		player.y = (Math.cos(AngleToRadians(player.ang)) * 163) + 300;
+		player.rotation -=World1.rotationSpeed;
+	}
+}
+
+function stopPlayerSpin(e:KeyboardEvent):void{
+	if(e.keyCode == 39) {
+		player.leftDown = false;		
+	}
+	if(e.keyCode == 37) {
+		player.rightDown = false;		
+	}
+}
+
+function startPlayerSpin(e:KeyboardEvent):void{
+	if(e.keyCode == 39) {
+		player.leftDown = true;		
+	}
+	if(e.keyCode == 37) {
+		player.rightDown = true;		
+	}
+}
+
+function AngleToRadians( angle ){
+	var returnAngle = Math.PI * angle / 180;
+	return returnAngle;
+}
+
+]]></script>
+                                   </Actionscript>
+                                   <elements/>
+                              </DOMFrame>
+                         </frames>
+                    </DOMLayer>
+                    <DOMLayer name="World Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -21,14 +91,12 @@
 import flash.events.KeyboardEvent;
 
 var World1:world_ = new world_;
-var player:dude_ = new dude_;
 
 stage.addChild(World1);
-stage.addChild(player);
 
-stage.addEventListener(KeyboardEvent.KEY_DOWN, startSpin);
-stage.addEventListener(KeyboardEvent.KEY_UP, stopSpin) 
-stage.addEventListener(Event.ENTER_FRAME, monitorKeyboardState);
+stage.addEventListener(KeyboardEvent.KEY_DOWN, startWorldSpin);
+stage.addEventListener(KeyboardEvent.KEY_UP, stopWorldSpin);
+stage.addEventListener(Event.ENTER_FRAME, monitorWorldKeyboardState);
 
 World1.visible = true;
 World1.x = 400;
@@ -37,32 +105,16 @@ World1.rotationSpeed = 1;
 World1.leftDown = false;
 World1.rightDown = false;
 
-player.visible = true;
-player.x = 400;
-player.y = 135;
-player.ang = 180; // angle
-player.angleSpeed = 1;
-
-function monitorKeyboardState(e:Event):void {
+function monitorWorldKeyboardState(e:Event):void {
 	if(World1.leftDown == true){
-		player.ang -= player.angleSpeed;
-		if(player.ang <=0){ player.ang +=360;}
-		player.x = (Math.sin(AngleToRadians(player.ang)) * 163) + 400;
-		player.y = (Math.cos(AngleToRadians(player.ang)) * 163) + 300;
-		player.rotation +=World1.rotationSpeed;
 		World1.rotation -=World1.rotationSpeed;
 	}
 	if(World1.rightDown == true){
-		player.ang += player.angleSpeed;
-		if(player.ang >=360){ player.ang -=360;}
-		player.x = (Math.sin(AngleToRadians(player.ang)) * 163) + 400;
-		player.y = (Math.cos(AngleToRadians(player.ang)) * 163) + 300;
-		player.rotation -=World1.rotationSpeed;
 		World1.rotation +=World1.rotationSpeed;
 	}
 }
 
-function stopSpin(e:KeyboardEvent):void{
+function stopWorldSpin(e:KeyboardEvent):void{
 	if(e.keyCode == 39) {
 		World1.leftDown = false;		
 	}
@@ -71,7 +123,7 @@ function stopSpin(e:KeyboardEvent):void{
 	}
 }
 
-function startSpin(e:KeyboardEvent):void{
+function startWorldSpin(e:KeyboardEvent):void{
 	if(e.keyCode == 39) {
 		World1.leftDown = true;		
 	}
@@ -80,10 +132,6 @@ function startSpin(e:KeyboardEvent):void{
 	}
 }
 
-function AngleToRadians( angle ){
-	var returnAngle = Math.PI * angle / 180;
-	return returnAngle;
-}
 
 ]]></script>
                                    </Actionscript>
@@ -99,6 +147,16 @@ function AngleToRadians( angle ){
      </persistentData>
      <PrinterSettings/>
      <publishHistory>
+          <PublishItem publishSize="1566" publishTime="1462912547"/>
+          <PublishItem publishSize="1519" publishTime="1462912465"/>
+          <PublishItem publishSize="1533" publishTime="1462912300"/>
+          <PublishItem publishSize="1524" publishTime="1462912278"/>
+          <PublishItem publishSize="233" publishTime="1462912251"/>
+          <PublishItem publishSize="233" publishTime="1462912202"/>
+          <PublishItem publishSize="233" publishTime="1462912155"/>
+          <PublishItem publishSize="233" publishTime="1462912119"/>
+          <PublishItem publishSize="1480" publishTime="1462910255"/>
+          <PublishItem publishSize="1481" publishTime="1462910220"/>
           <PublishItem publishSize="1774" publishTime="1462909700" publishDebug="true"/>
           <PublishItem publishSize="1779" publishTime="1462909674" publishDebug="true"/>
           <PublishItem publishSize="1750" publishTime="1462909603" publishDebug="true"/>
