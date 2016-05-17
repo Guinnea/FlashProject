@@ -3,11 +3,11 @@
           <DOMFontItem name="Font 1" itemID="57324e8a-00000043" linkageExportForAS="true" linkageBaseClass="flash.text.Font" linkageClassName="Font1" font="ArialMT" size="0" id="1" sourceLastImported="1462914755" embeddedCharacters="." embedRanges="3"/>
      </fonts>
      <symbols>
-          <Include href="dude.xml" itemID="572901cb-0000001d" lastModified="1462305227"/>
-          <Include href="EditorMenu.xml" itemID="573244f6-00000018" lastModified="1463518409"/>
+          <Include href="dude.xml" itemID="572901cb-0000001d" lastModified="1462916712"/>
+          <Include href="EditorMenu.xml" itemID="573244f6-00000018" lastModified="1463519014"/>
           <Include href="menuButtonClose.xml" itemIcon="0" loadImmediate="false" itemID="573249cb-00000035" lastModified="1462913483"/>
           <Include href="menuButtonOpen.xml" itemIcon="0" loadImmediate="false" itemID="573249c2-00000034" lastModified="1462913509"/>
-          <Include href="world.xml" itemID="5728f764-00000005" lastModified="1462302880"/>
+          <Include href="world.xml" itemID="5728f764-00000005" lastModified="1462917093"/>
      </symbols>
      <timelines>
           <DOMTimeline name="Scene 1">
@@ -64,7 +64,7 @@ var playerAttributes = {
 
 // world attributes
 var worldAttributes = {
-	mass:2500,
+	mass:Number(editorMenu.textWorldMass.text),
 	leftDown:false,
 	rightDown:false,
 	maxRotationSpeed:2,
@@ -84,7 +84,7 @@ var worldAttributes = {
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="Player Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
+                    <DOMLayer name="Player Script" color="#4F80FF" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -234,7 +234,7 @@ function startWorldSpin(e:KeyboardEvent):void{
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="Last Script" color="#9933CC" autoNamed="false">
+                    <DOMLayer name="Last Script" color="#9933CC" current="true" isSelected="true" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -246,6 +246,7 @@ function MonitorGameState(e:Event):void {
 	if(changeMade == true){
 		player.playerAttributes.rotationSpeed = Number(editorMenu.textPlayerSpeed.text);
 		player.playerAttributes.angleSpeed = Number(editorMenu.textPlayerSpeed.text);
+		World1.worldAttributes.mass = Number(editorMenu.textWorldMass.text);
 		changeMade = false;
 	}
 }
@@ -264,6 +265,8 @@ function MonitorGameState(e:Event):void {
      </persistentData>
      <PrinterSettings/>
      <publishHistory>
+          <PublishItem publishSize="10010" publishTime="1463519021" publishDebug="true"/>
+          <PublishItem publishSize="10003" publishTime="1463518862" publishDebug="true"/>
           <PublishItem publishSize="10012" publishTime="1463518251" publishDebug="true"/>
           <PublishItem publishSize="10011" publishTime="1462921723" publishDebug="true"/>
           <PublishItem publishSize="9443" publishTime="1462921584"/>
@@ -282,7 +285,5 @@ function MonitorGameState(e:Event):void {
           <PublishItem publishSize="10008" publishTime="1462921154" publishDebug="true"/>
           <PublishItem publishSize="9434" publishTime="1462920945"/>
           <PublishItem publishSize="9434" publishTime="1462920873"/>
-          <PublishItem publishSize="9414" publishTime="1462920593"/>
-          <PublishItem publishSize="9428" publishTime="1462919282"/>
      </publishHistory>
 </DOMDocument>
