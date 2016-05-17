@@ -7,14 +7,41 @@
           <Include href="EditorMenu.xml" itemID="573244f6-00000018" lastModified="1463519014"/>
           <Include href="menuButtonClose.xml" itemIcon="0" loadImmediate="false" itemID="573249cb-00000035" lastModified="1462913483"/>
           <Include href="menuButtonOpen.xml" itemIcon="0" loadImmediate="false" itemID="573249c2-00000034" lastModified="1462913509"/>
-          <Include href="world.xml" itemID="5728f764-00000005" lastModified="1462917093"/>
+          <Include href="world.xml" itemID="5728f764-00000005" lastModified="1463524962"/>
      </symbols>
      <timelines>
           <DOMTimeline name="Scene 1">
                <layers>
-                    <DOMLayer name="Scene" color="#4F80FF" autoNamed="false">
+                    <DOMLayer name="Scene" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
+                                   <Actionscript>
+                                        <script><![CDATA[var size:uint = 100; 
+var roundObject:Shape = new Shape(); 
+var qang = 135; 
+
+// green circular shape 
+roundObject.graphics.beginFill(0x00FF00); 
+roundObject.graphics.moveTo(200 + size / 2, 0); 
+roundObject.graphics.curveTo(200 + size, 0, 200 + size, size / 2); 
+roundObject.graphics.curveTo(200 + size, size, 200 + size / 2, size); 
+roundObject.graphics.curveTo(200, size, 200, size / 2); 
+roundObject.graphics.curveTo(200, 0, 200 + size / 2, 0);
+
+// red circular shape 
+roundObject.graphics.beginFill(0xFF0000);
+roundObject.graphics.moveTo(400 -  (Math.sin(AngleToRadians(qang)) * 150), 300 + (Math.cos(AngleToRadians(qang)) * 150)); 
+//roundObject.graphics.moveTo(400 -  (Math.sin(AngleToRadians(qang)) * 165), 300 + (Math.cos(AngleToRadians(qang)) * 165)); 
+qang = 225;
+roundObject.graphics.curveTo(400, 300-200, 400 -  (Math.sin(AngleToRadians(qang)) * 150), 300 + (Math.cos(AngleToRadians(qang)) * 150)); 
+roundObject.graphics.curveTo(50, 50, 50, 0); 
+roundObject.graphics.curveTo(50, 50, 0, 50); 
+roundObject.graphics.curveTo(0, 50, 50, 50); 
+ 
+ 
+ 
+this.addChild(roundObject);]]></script>
+                                   </Actionscript>
                                    <elements/>
                               </DOMFrame>
                          </frames>
@@ -158,10 +185,7 @@ function startPlayerSpin(e:KeyboardEvent):void{
 		player.playerAttributes.rightDown = true;		
 }
 
-function AngleToRadians( angle ){
-	var returnAngle = Math.PI * angle / 180;
-	return returnAngle;
-}
+
 
 ]]></script>
                                    </Actionscript>
@@ -234,7 +258,7 @@ function startWorldSpin(e:KeyboardEvent):void{
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="Last Script" color="#9933CC" current="true" isSelected="true" autoNamed="false">
+                    <DOMLayer name="Last Script" color="#9933CC" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -248,9 +272,14 @@ function MonitorGameState(e:Event):void {
 		player.playerAttributes.angleSpeed = Number(editorMenu.textPlayerSpeed.text);
 		World1.worldAttributes.mass = Number(editorMenu.textWorldMass.text);
 		changeMade = false;
+		World1.visible = false;
 	}
 }
 
+function AngleToRadians( angle ){
+	var returnAngle = Math.PI * angle / 180;
+	return returnAngle;
+}
 ]]></script>
                                    </Actionscript>
                                    <elements/>
@@ -265,25 +294,25 @@ function MonitorGameState(e:Event):void {
      </persistentData>
      <PrinterSettings/>
      <publishHistory>
-          <PublishItem publishSize="10010" publishTime="1463519021" publishDebug="true"/>
-          <PublishItem publishSize="10003" publishTime="1463518862" publishDebug="true"/>
-          <PublishItem publishSize="10012" publishTime="1463518251" publishDebug="true"/>
-          <PublishItem publishSize="10011" publishTime="1462921723" publishDebug="true"/>
-          <PublishItem publishSize="9443" publishTime="1462921584"/>
-          <PublishItem publishSize="9442" publishTime="1462921550"/>
-          <PublishItem publishSize="9443" publishTime="1462921516"/>
-          <PublishItem publishSize="9442" publishTime="1462921489"/>
-          <PublishItem publishSize="9442" publishTime="1462921467"/>
-          <PublishItem publishSize="9438" publishTime="1462921452"/>
-          <PublishItem publishSize="9438" publishTime="1462921433"/>
-          <PublishItem publishSize="9445" publishTime="1462921381"/>
-          <PublishItem publishSize="9444" publishTime="1462921350"/>
-          <PublishItem publishSize="9447" publishTime="1462921325"/>
-          <PublishItem publishSize="9446" publishTime="1462921307"/>
-          <PublishItem publishSize="9449" publishTime="1462921239"/>
-          <PublishItem publishSize="9447" publishTime="1462921177"/>
-          <PublishItem publishSize="10008" publishTime="1462921154" publishDebug="true"/>
-          <PublishItem publishSize="9434" publishTime="1462920945"/>
-          <PublishItem publishSize="9434" publishTime="1462920873"/>
+          <PublishItem publishSize="10276" publishTime="1463525101" publishDebug="true"/>
+          <PublishItem publishSize="10275" publishTime="1463525076" publishDebug="true"/>
+          <PublishItem publishSize="10275" publishTime="1463525060" publishDebug="true"/>
+          <PublishItem publishSize="10275" publishTime="1463525050" publishDebug="true"/>
+          <PublishItem publishSize="10275" publishTime="1463525017" publishDebug="true"/>
+          <PublishItem publishSize="10271" publishTime="1463524968" publishDebug="true"/>
+          <PublishItem publishSize="10240" publishTime="1463524929" publishDebug="true"/>
+          <PublishItem publishSize="10252" publishTime="1463524906" publishDebug="true"/>
+          <PublishItem publishSize="10252" publishTime="1463524868" publishDebug="true"/>
+          <PublishItem publishSize="10243" publishTime="1463524803" publishDebug="true"/>
+          <PublishItem publishSize="10244" publishTime="1463524786" publishDebug="true"/>
+          <PublishItem publishSize="10244" publishTime="1463524775" publishDebug="true"/>
+          <PublishItem publishSize="10244" publishTime="1463524768" publishDebug="true"/>
+          <PublishItem publishSize="10252" publishTime="1463524703" publishDebug="true"/>
+          <PublishItem publishSize="10240" publishTime="1463524614" publishDebug="true"/>
+          <PublishItem publishSize="10240" publishTime="1463524551" publishDebug="true"/>
+          <PublishItem publishSize="10237" publishTime="1463524470" publishDebug="true"/>
+          <PublishItem publishSize="10231" publishTime="1463524447" publishDebug="true"/>
+          <PublishItem publishSize="10241" publishTime="1463524425" publishDebug="true"/>
+          <PublishItem publishSize="10240" publishTime="1463524415" publishDebug="true"/>
      </publishHistory>
 </DOMDocument>
