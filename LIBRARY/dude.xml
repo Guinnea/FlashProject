@@ -1,4 +1,4 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="dude" itemID="572901cb-0000001d" linkageExportForAS="true" linkageClassName="dude_" lastModified="1462305227">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="dude" itemID="572901cb-0000001d" linkageExportForAS="true" linkageClassName="dude_" lastModified="1462916712">
   <timeline>
     <DOMTimeline name="dude">
       <layers>
@@ -22,7 +22,7 @@
                     </StrokeStyle>
                   </strokes>
                   <edges>
-                    <Edge fillStyle1="1" strokeStyle="1" edges="!-250 -250S6|250 -250!250 -250|250 250!250 250|-250 250!-250 250|-250 -250"/>
+                    <Edge fillStyle1="1" strokeStyle="1" edges="!-250 -250|250 -250!250 -250|250 250!250 250|-250 250!-250 250|-250 -250"/>
                   </edges>
                 </DOMShape>
               </elements>

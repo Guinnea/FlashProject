@@ -3,23 +3,37 @@
           <DOMFontItem name="Font 1" itemID="57324e8a-00000043" linkageExportForAS="true" linkageBaseClass="flash.text.Font" linkageClassName="Font1" font="ArialMT" size="0" id="1" sourceLastImported="1462914755" embeddedCharacters="." embedRanges="3"/>
      </fonts>
      <symbols>
-          <Include href="dude.xml" itemID="572901cb-0000001d" lastModified="1462305227"/>
-          <Include href="EditorMenu.xml" itemID="573244f6-00000018" lastModified="1462915075"/>
+          <Include href="dude.xml" itemID="572901cb-0000001d" lastModified="1462916712"/>
+          <Include href="EditorMenu.xml" itemID="573244f6-00000018" lastModified="1462915794"/>
           <Include href="menuButtonClose.xml" itemIcon="0" loadImmediate="false" itemID="573249cb-00000035" lastModified="1462913483"/>
           <Include href="menuButtonOpen.xml" itemIcon="0" loadImmediate="false" itemID="573249c2-00000034" lastModified="1462913509"/>
-          <Include href="world.xml" itemID="5728f764-00000005" lastModified="1462302880"/>
+          <Include href="world.xml" itemID="5728f764-00000005" lastModified="1462917093"/>
      </symbols>
      <timelines>
           <DOMTimeline name="Scene 1">
                <layers>
-                    <DOMLayer name="Scene" color="#4F80FF" autoNamed="false">
+                    <DOMLayer name="Scene" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
+                                   <Actionscript>
+                                        <script><![CDATA[var size:uint = 100; 
+var roundObject:Shape = new Shape(); 
+ 
+// red circular shape 
+roundObject.graphics.beginFill(0xFF0000); 
+roundObject.graphics.moveTo(50, 0); 
+roundObject.graphics.curveTo(50, 50, 100, 50);
+roundObject.graphics.curveTo(50, 50, 50, 100);
+roundObject.graphics.curveTo(50, 50, 0, 50);
+roundObject.graphics.curveTo(50, 50, 50, 0);
+ 
+this.addChild(roundObject);]]></script>
+                                   </Actionscript>
                                    <elements/>
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="Master Script" color="#00FF00" current="true" isSelected="true" autoNamed="false">
+                    <DOMLayer name="Master Script" color="#00FF00" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -64,7 +78,7 @@ var playerAttributes = {
 
 // world attributes
 var worldAttributes = {
-	mass:1000,
+	mass:Number(editorMenu.textWorldMass.text),
 	leftDown:false,
 	rightDown:false,
 	maxRotationSpeed:2,
@@ -72,7 +86,7 @@ var worldAttributes = {
 };]]></script>
                                    </Actionscript>
                                    <elements>
-                                        <DOMSymbolInstance libraryItemName="menuButtonOpen" name="openEditor" selected="true" symbolType="button">
+                                        <DOMSymbolInstance libraryItemName="menuButtonOpen" name="openEditor" symbolType="button">
                                              <matrix>
                                                   <Matrix tx="70" ty="20"/>
                                              </matrix>
@@ -235,6 +249,7 @@ function MonitorGameState(e:Event):void {
 	if(changeMade == true){
 		player.playerAttributes.rotationSpeed = Number(editorMenu.textPlayerSpeed.text);
 		player.playerAttributes.angleSpeed = Number(editorMenu.textPlayerSpeed.text);
+		World1.worldAttributes.mass = Number(editorMenu.textWorldMass.text);
 		changeMade = false;
 	}
 }
@@ -253,7 +268,25 @@ function MonitorGameState(e:Event):void {
      </persistentData>
      <PrinterSettings/>
      <publishHistory>
-          <PublishItem publishSize="9428" publishTime="1462919282"/>
-          <PublishItem publishSize="9425" publishTime="1462919256"/>
+          <PublishItem publishSize="10145" publishTime="1462917915" publishDebug="true"/>
+          <PublishItem publishSize="10141" publishTime="1462917798" publishDebug="true"/>
+          <PublishItem publishSize="10134" publishTime="1462917777" publishDebug="true"/>
+          <PublishItem publishSize="10127" publishTime="1462917751" publishDebug="true"/>
+          <PublishItem publishSize="10144" publishTime="1462917707" publishDebug="true"/>
+          <PublishItem publishSize="10132" publishTime="1462917640" publishDebug="true"/>
+          <PublishItem publishSize="10131" publishTime="1462917630" publishDebug="true"/>
+          <PublishItem publishSize="10144" publishTime="1462917569" publishDebug="true"/>
+          <PublishItem publishSize="10143" publishTime="1462917562" publishDebug="true"/>
+          <PublishItem publishSize="10149" publishTime="1462917541" publishDebug="true"/>
+          <PublishItem publishSize="10155" publishTime="1462917449" publishDebug="true"/>
+          <PublishItem publishSize="10153" publishTime="1462917378" publishDebug="true"/>
+          <PublishItem publishSize="10152" publishTime="1462917314" publishDebug="true"/>
+          <PublishItem publishSize="10151" publishTime="1462917294" publishDebug="true"/>
+          <PublishItem publishSize="10150" publishTime="1462917281" publishDebug="true"/>
+          <PublishItem publishSize="10155" publishTime="1462917248" publishDebug="true"/>
+          <PublishItem publishSize="10156" publishTime="1462917232" publishDebug="true"/>
+          <PublishItem publishSize="10156" publishTime="1462917206" publishDebug="true"/>
+          <PublishItem publishSize="10154" publishTime="1462917152" publishDebug="true"/>
+          <PublishItem publishSize="10213" publishTime="1462917118" publishDebug="true"/>
      </publishHistory>
 </DOMDocument>
