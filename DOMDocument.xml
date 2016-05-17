@@ -4,7 +4,7 @@
      </fonts>
      <symbols>
           <Include href="dude.xml" itemID="572901cb-0000001d" lastModified="1462305227"/>
-          <Include href="EditorMenu.xml" itemID="573244f6-00000018" lastModified="1462915075"/>
+          <Include href="EditorMenu.xml" itemID="573244f6-00000018" lastModified="1463518409"/>
           <Include href="menuButtonClose.xml" itemIcon="0" loadImmediate="false" itemID="573249cb-00000035" lastModified="1462913483"/>
           <Include href="menuButtonOpen.xml" itemIcon="0" loadImmediate="false" itemID="573249c2-00000034" lastModified="1462913509"/>
           <Include href="world.xml" itemID="5728f764-00000005" lastModified="1462302880"/>
@@ -19,7 +19,7 @@
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="Master Script" color="#00FF00" current="true" isSelected="true" autoNamed="false">
+                    <DOMLayer name="Master Script" color="#00FF00" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -72,7 +72,7 @@ var worldAttributes = {
 };]]></script>
                                    </Actionscript>
                                    <elements>
-                                        <DOMSymbolInstance libraryItemName="menuButtonOpen" name="openEditor" selected="true" symbolType="button">
+                                        <DOMSymbolInstance libraryItemName="menuButtonOpen" name="openEditor" symbolType="button">
                                              <matrix>
                                                   <Matrix tx="70" ty="20"/>
                                              </matrix>
@@ -84,7 +84,7 @@ var worldAttributes = {
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="Player Script" color="#4F80FF" autoNamed="false">
+                    <DOMLayer name="Player Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -264,6 +264,7 @@ function MonitorGameState(e:Event):void {
      </persistentData>
      <PrinterSettings/>
      <publishHistory>
+          <PublishItem publishSize="10012" publishTime="1463518251" publishDebug="true"/>
           <PublishItem publishSize="10011" publishTime="1462921723" publishDebug="true"/>
           <PublishItem publishSize="9443" publishTime="1462921584"/>
           <PublishItem publishSize="9442" publishTime="1462921550"/>
@@ -283,6 +284,5 @@ function MonitorGameState(e:Event):void {
           <PublishItem publishSize="9434" publishTime="1462920873"/>
           <PublishItem publishSize="9414" publishTime="1462920593"/>
           <PublishItem publishSize="9428" publishTime="1462919282"/>
-          <PublishItem publishSize="9425" publishTime="1462919256"/>
      </publishHistory>
 </DOMDocument>
