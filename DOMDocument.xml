@@ -59,6 +59,7 @@ var playerAttributes = {
 	leftDown:false,
 	rightDown:false,
 	ang:180,
+	jumpKey:false,
 	angleSpeed:Number(editorMenu.textPlayerSpeed.text)
 };
 
@@ -102,63 +103,73 @@ stage.addEventListener(Event.ENTER_FRAME, monitorKeyboardState);
 
 player.x = 400;
 player.y = 135;
+player.inAir = false;
+player.maxHeight = 20;
+player.hympHeight = 0;
 
 function monitorKeyboardState(e:Event):void {
 
-	if(player.playerAttributes.rightDown == false && player.playerAttributes.leftDown == false)
+	if(
+		(player.playerAttributes.rightDown == false && player.playerAttributes.leftDown == false) ||
+		(player.playerAttributes.rightDown == true && player.playerAttributes.leftDown == true))
 	{
 		if(World1.worldAttributes.rotationSpeed != 0)
 		player.playerAttributes.ang -= World1.worldAttributes.rotationSpeed;
 		
 		player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
 		player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 300;
-		player.rotation += player.playerAttributes.rotationSpeed;
+		player.rotation += World1.worldAttributes.rotationSpeed;
 	}
-	else
-	{
-		if(player.playerAttributes.leftDown == true)
+	else if(player.playerAttributes.leftDown == true && player.playerAttributes.rightDown == false)
 		{
 			player.playerAttributes.ang -= 
-			player.playerAttributes.angleSpeed + World1.worldAttributes.rotationSpeed;
+			player.playerAttributes.angleSpeed + (World1.worldAttributes.rotationSpeed * (1.4));
 		
 			if(player.playerAttributes.ang <=0)
 				player.playerAttributes.ang +=360;
 		
 			player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
 			player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 300;
-			player.rotation += player.playerAttributes.rotationSpeed;
+			player.rotation += player.playerAttributes.rotationSpeed + (World1.worldAttributes.rotationSpeed * (1.4));
 		}
 		
-		if(player.playerAttributes.rightDown == true)
+	else if(player.playerAttributes.rightDown == true && player.playerAttributes.leftDown == false)
 		{
 			player.playerAttributes.ang += 
-			player.playerAttributes.angleSpeed - World1.worldAttributes.rotationSpeed;
+			player.playerAttributes.angleSpeed - World1.worldAttributes.rotationSpeed * (1.4);
 		
 			if(player.playerAttributes.ang >=360)
 				player.playerAttributes.ang -=360;
 		
 			player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
 			player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 300;
-			player.rotation -= player.playerAttributes.rotationSpeed;
+			player.rotation -= player.playerAttributes.rotationSpeed - (World1.worldAttributes.rotationSpeed * (1.4));
 		}
-	}
 }
 
-function stopPlayerSpin(e:KeyboardEvent):void{
+function stopPlayerSpin(e:KeyboardEvent):void
+{
 	if(e.keyCode == 39) 
 		player.playerAttributes.leftDown = false;		
 	if(e.keyCode == 37) 
-		player.playerAttributes.rightDown = false;		
+		player.playerAttributes.rightDown = false;	
+	if(e.keyCode == 32) 
+		player.playerAttributes.jumpKey = false;	
+	
 }
 
-function startPlayerSpin(e:KeyboardEvent):void{
+function startPlayerSpin(e:KeyboardEvent):void
+{
 	if(e.keyCode == 39) 
 		player.playerAttributes.leftDown = true;		
 	if(e.keyCode == 37) 
-		player.playerAttributes.rightDown = true;		
+		player.playerAttributes.rightDown = true;
+	if(e.keyCode == 32 && count_fire<5) 
+		player.playerAttributes.jumpKey = true;	
+	
 }
 
-function AngleToRadians( angle ){
+function AngleToRadians(angle){
 	var returnAngle = Math.PI * angle / 180;
 	return returnAngle;
 }
@@ -169,7 +180,7 @@ function AngleToRadians( angle ){
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="World Script" color="#4F80FF" autoNamed="false">
+                    <DOMLayer name="World Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -188,10 +199,13 @@ World1.x = 400;
 World1.y = 300;
 
 function monitorWorldKeyboardState(e:Event):void {
-	if (World1.worldAttributes.leftDown == false && World1.worldAttributes.rightDown == false)
+	if ((World1.worldAttributes.leftDown == false && World1.worldAttributes.rightDown == false) ||
+		World1.worldAttributes.leftDown == true && World1.worldAttributes.rightDown == true)
 	{
+		
 		if(World1.worldAttributes.rotationSpeed < 0)
 		World1.worldAttributes.rotationSpeed += (50 / World1.worldAttributes.mass);
+		
 		else if (World1.worldAttributes.rotationSpeed > 0)
 		World1.worldAttributes.rotationSpeed -= (50 / World1.worldAttributes.mass);
 	}
@@ -208,6 +222,7 @@ function monitorWorldKeyboardState(e:Event):void {
 			World1.worldAttributes.rotationSpeed += (50 / World1.worldAttributes.mass);
 		}
 	}
+	
 	World1.rotation += World1.worldAttributes.rotationSpeed;
 }
 
@@ -234,7 +249,7 @@ function startWorldSpin(e:KeyboardEvent):void{
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="Last Script" color="#9933CC" current="true" isSelected="true" autoNamed="false">
+                    <DOMLayer name="Last Script" color="#9933CC" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -265,25 +280,25 @@ function MonitorGameState(e:Event):void {
      </persistentData>
      <PrinterSettings/>
      <publishHistory>
-          <PublishItem publishSize="10010" publishTime="1463519021" publishDebug="true"/>
-          <PublishItem publishSize="10003" publishTime="1463518862" publishDebug="true"/>
-          <PublishItem publishSize="10012" publishTime="1463518251" publishDebug="true"/>
-          <PublishItem publishSize="10011" publishTime="1462921723" publishDebug="true"/>
-          <PublishItem publishSize="9443" publishTime="1462921584"/>
-          <PublishItem publishSize="9442" publishTime="1462921550"/>
-          <PublishItem publishSize="9443" publishTime="1462921516"/>
-          <PublishItem publishSize="9442" publishTime="1462921489"/>
-          <PublishItem publishSize="9442" publishTime="1462921467"/>
-          <PublishItem publishSize="9438" publishTime="1462921452"/>
-          <PublishItem publishSize="9438" publishTime="1462921433"/>
-          <PublishItem publishSize="9445" publishTime="1462921381"/>
-          <PublishItem publishSize="9444" publishTime="1462921350"/>
-          <PublishItem publishSize="9447" publishTime="1462921325"/>
-          <PublishItem publishSize="9446" publishTime="1462921307"/>
-          <PublishItem publishSize="9449" publishTime="1462921239"/>
-          <PublishItem publishSize="9447" publishTime="1462921177"/>
-          <PublishItem publishSize="10008" publishTime="1462921154" publishDebug="true"/>
-          <PublishItem publishSize="9434" publishTime="1462920945"/>
-          <PublishItem publishSize="9434" publishTime="1462920873"/>
+          <PublishItem publishSize="10068" publishTime="1463522881" publishDebug="true"/>
+          <PublishItem publishSize="10079" publishTime="1463522239" publishDebug="true"/>
+          <PublishItem publishSize="10080" publishTime="1463522156" publishDebug="true"/>
+          <PublishItem publishSize="10079" publishTime="1463522103" publishDebug="true"/>
+          <PublishItem publishSize="10068" publishTime="1463521996" publishDebug="true"/>
+          <PublishItem publishSize="10053" publishTime="1463521386" publishDebug="true"/>
+          <PublishItem publishSize="10053" publishTime="1463521362" publishDebug="true"/>
+          <PublishItem publishSize="10036" publishTime="1463521168" publishDebug="true"/>
+          <PublishItem publishSize="10034" publishTime="1463521106" publishDebug="true"/>
+          <PublishItem publishSize="10034" publishTime="1463521058" publishDebug="true"/>
+          <PublishItem publishSize="10038" publishTime="1463520986" publishDebug="true"/>
+          <PublishItem publishSize="10036" publishTime="1463520910" publishDebug="true"/>
+          <PublishItem publishSize="10027" publishTime="1463520480" publishDebug="true"/>
+          <PublishItem publishSize="10027" publishTime="1463520297" publishDebug="true"/>
+          <PublishItem publishSize="10027" publishTime="1463520274" publishDebug="true"/>
+          <PublishItem publishSize="10027" publishTime="1463520252" publishDebug="true"/>
+          <PublishItem publishSize="10024" publishTime="1463520142" publishDebug="true"/>
+          <PublishItem publishSize="10021" publishTime="1463520099" publishDebug="true"/>
+          <PublishItem publishSize="10031" publishTime="1463520052" publishDebug="true"/>
+          <PublishItem publishSize="10032" publishTime="1463519917" publishDebug="true"/>
      </publishHistory>
 </DOMDocument>
