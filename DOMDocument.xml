@@ -64,7 +64,7 @@ var playerAttributes = {
 
 // world attributes
 var worldAttributes = {
-	mass:1000,
+	mass:2500,
 	leftDown:false,
 	rightDown:false,
 	maxRotationSpeed:2,
@@ -93,7 +93,6 @@ import flash.events.KeyboardEvent;
 
 var player:dude_ = new dude_;
 player.playerAttributes = playerAttributes;
-trace(player.playerAttributes.rotationSpeed);
 
 stage.addChild(player);
 
@@ -101,50 +100,62 @@ stage.addEventListener(KeyboardEvent.KEY_DOWN, startPlayerSpin);
 stage.addEventListener(KeyboardEvent.KEY_UP, stopPlayerSpin) 
 stage.addEventListener(Event.ENTER_FRAME, monitorKeyboardState);
 
-
-player.visible = true;
 player.x = 400;
 player.y = 135;
-/*
-player.rotationSpeed = 1;
-player.leftDown = false;
-player.rightDown = false;
-player.ang = 180; // angle
-player.angleSpeed = 1;
-*/
+
 function monitorKeyboardState(e:Event):void {
-	if(player.playerAttributes.leftDown == true){
-		player.playerAttributes.ang -= player.playerAttributes.angleSpeed;
-		if(player.playerAttributes.ang <=0){ player.playerAttributes.ang +=360;}
+
+	if(player.playerAttributes.rightDown == false && player.playerAttributes.leftDown == false)
+	{
+		if(World1.worldAttributes.rotationSpeed != 0)
+		player.playerAttributes.ang -= World1.worldAttributes.rotationSpeed;
+		
 		player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
 		player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 300;
-		player.rotation +=player.playerAttributes.rotationSpeed;
+		player.rotation += player.playerAttributes.rotationSpeed;
 	}
-	if(player.playerAttributes.rightDown == true){
-		player.playerAttributes.ang += player.playerAttributes.angleSpeed;
-		if(player.playerAttributes.ang >=360){ player.playerAttributes.ang -=360;}
-		player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
-		player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 300;
-		player.rotation -=player.playerAttributes.rotationSpeed;
+	else
+	{
+		if(player.playerAttributes.leftDown == true)
+		{
+			player.playerAttributes.ang -= 
+			player.playerAttributes.angleSpeed + World1.worldAttributes.rotationSpeed;
+		
+			if(player.playerAttributes.ang <=0)
+				player.playerAttributes.ang +=360;
+		
+			player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
+			player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 300;
+			player.rotation += player.playerAttributes.rotationSpeed;
+		}
+		
+		if(player.playerAttributes.rightDown == true)
+		{
+			player.playerAttributes.ang += 
+			player.playerAttributes.angleSpeed - World1.worldAttributes.rotationSpeed;
+		
+			if(player.playerAttributes.ang >=360)
+				player.playerAttributes.ang -=360;
+		
+			player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
+			player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 300;
+			player.rotation -= player.playerAttributes.rotationSpeed;
+		}
 	}
 }
 
 function stopPlayerSpin(e:KeyboardEvent):void{
-	if(e.keyCode == 39) {
+	if(e.keyCode == 39) 
 		player.playerAttributes.leftDown = false;		
-	}
-	if(e.keyCode == 37) {
+	if(e.keyCode == 37) 
 		player.playerAttributes.rightDown = false;		
-	}
 }
 
 function startPlayerSpin(e:KeyboardEvent):void{
-	if(e.keyCode == 39) {
+	if(e.keyCode == 39) 
 		player.playerAttributes.leftDown = true;		
-	}
-	if(e.keyCode == 37) {
+	if(e.keyCode == 37) 
 		player.playerAttributes.rightDown = true;		
-	}
 }
 
 function AngleToRadians( angle ){
@@ -253,6 +264,24 @@ function MonitorGameState(e:Event):void {
      </persistentData>
      <PrinterSettings/>
      <publishHistory>
+          <PublishItem publishSize="10011" publishTime="1462921723" publishDebug="true"/>
+          <PublishItem publishSize="9443" publishTime="1462921584"/>
+          <PublishItem publishSize="9442" publishTime="1462921550"/>
+          <PublishItem publishSize="9443" publishTime="1462921516"/>
+          <PublishItem publishSize="9442" publishTime="1462921489"/>
+          <PublishItem publishSize="9442" publishTime="1462921467"/>
+          <PublishItem publishSize="9438" publishTime="1462921452"/>
+          <PublishItem publishSize="9438" publishTime="1462921433"/>
+          <PublishItem publishSize="9445" publishTime="1462921381"/>
+          <PublishItem publishSize="9444" publishTime="1462921350"/>
+          <PublishItem publishSize="9447" publishTime="1462921325"/>
+          <PublishItem publishSize="9446" publishTime="1462921307"/>
+          <PublishItem publishSize="9449" publishTime="1462921239"/>
+          <PublishItem publishSize="9447" publishTime="1462921177"/>
+          <PublishItem publishSize="10008" publishTime="1462921154" publishDebug="true"/>
+          <PublishItem publishSize="9434" publishTime="1462920945"/>
+          <PublishItem publishSize="9434" publishTime="1462920873"/>
+          <PublishItem publishSize="9414" publishTime="1462920593"/>
           <PublishItem publishSize="9428" publishTime="1462919282"/>
           <PublishItem publishSize="9425" publishTime="1462919256"/>
      </publishHistory>
