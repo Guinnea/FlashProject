@@ -1,4 +1,4 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="world" itemID="5728f764-00000005" linkageExportForAS="true" linkageClassName="world_" lastModified="1462917093">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="world" itemID="5728f764-00000005" linkageExportForAS="true" linkageClassName="world_" lastModified="1463524962">
   <timeline>
     <DOMTimeline name="world">
       <layers>
@@ -9,7 +9,7 @@
                 <DOMShape>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#666666"/>
+                      <SolidColor color="#333333" alpha="0.498039215686275"/>
                     </FillStyle>
                   </fills>
                   <strokes>

@@ -7,14 +7,41 @@
           <Include href="EditorMenu.xml" itemID="573244f6-00000018" lastModified="1463519014"/>
           <Include href="menuButtonClose.xml" itemIcon="0" loadImmediate="false" itemID="573249cb-00000035" lastModified="1462913483"/>
           <Include href="menuButtonOpen.xml" itemIcon="0" loadImmediate="false" itemID="573249c2-00000034" lastModified="1462913509"/>
-          <Include href="world.xml" itemID="5728f764-00000005" lastModified="1462917093"/>
+          <Include href="world.xml" itemID="5728f764-00000005" lastModified="1463524962"/>
      </symbols>
      <timelines>
           <DOMTimeline name="Scene 1">
                <layers>
-                    <DOMLayer name="Scene" color="#4F80FF" autoNamed="false">
+                    <DOMLayer name="Scene" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
+                                   <Actionscript>
+                                        <script><![CDATA[var size:uint = 100; 
+var roundObject:Shape = new Shape(); 
+var qang = 135; 
+
+// green circular shape 
+roundObject.graphics.beginFill(0x00FF00); 
+roundObject.graphics.moveTo(200 + size / 2, 0); 
+roundObject.graphics.curveTo(200 + size, 0, 200 + size, size / 2); 
+roundObject.graphics.curveTo(200 + size, size, 200 + size / 2, size); 
+roundObject.graphics.curveTo(200, size, 200, size / 2); 
+roundObject.graphics.curveTo(200, 0, 200 + size / 2, 0);
+
+// red circular shape 
+roundObject.graphics.beginFill(0xFF0000);
+roundObject.graphics.moveTo(400 -  (Math.sin(AngleToRadians(qang)) * 150), 300 + (Math.cos(AngleToRadians(qang)) * 150)); 
+//roundObject.graphics.moveTo(400 -  (Math.sin(AngleToRadians(qang)) * 165), 300 + (Math.cos(AngleToRadians(qang)) * 165)); 
+qang = 225;
+roundObject.graphics.curveTo(400, 300-200, 400 -  (Math.sin(AngleToRadians(qang)) * 150), 300 + (Math.cos(AngleToRadians(qang)) * 150)); 
+roundObject.graphics.curveTo(50, 50, 50, 0); 
+roundObject.graphics.curveTo(50, 50, 0, 50); 
+roundObject.graphics.curveTo(0, 50, 50, 50); 
+ 
+ 
+ 
+this.addChild(roundObject);]]></script>
+                                   </Actionscript>
                                    <elements/>
                               </DOMFrame>
                          </frames>
@@ -103,9 +130,9 @@ stage.addEventListener(Event.ENTER_FRAME, monitorKeyboardState);
 
 player.x = 400;
 player.y = 135;
-player.inAir = false;
-player.maxHeight = 20;
-player.hympHeight = 0;
+//player.inAir = false;
+//player.maxHeight = 20;
+//player.jumpHeight = 0;
 
 function monitorKeyboardState(e:Event):void {
 
@@ -164,15 +191,18 @@ function startPlayerSpin(e:KeyboardEvent):void
 		player.playerAttributes.leftDown = true;		
 	if(e.keyCode == 37) 
 		player.playerAttributes.rightDown = true;
-	if(e.keyCode == 32 && count_fire<5) 
+	if(e.keyCode == 32) 
 		player.playerAttributes.jumpKey = true;	
 	
 }
+
 
 function AngleToRadians(angle){
 	var returnAngle = Math.PI * angle / 180;
 	return returnAngle;
 }
+
+
 
 ]]></script>
                                    </Actionscript>
@@ -180,7 +210,7 @@ function AngleToRadians(angle){
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="World Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
+                    <DOMLayer name="World Script" color="#4F80FF" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -263,9 +293,9 @@ function MonitorGameState(e:Event):void {
 		player.playerAttributes.angleSpeed = Number(editorMenu.textPlayerSpeed.text);
 		World1.worldAttributes.mass = Number(editorMenu.textWorldMass.text);
 		changeMade = false;
+		World1.visible = false;
 	}
 }
-
 ]]></script>
                                    </Actionscript>
                                    <elements/>
@@ -280,25 +310,6 @@ function MonitorGameState(e:Event):void {
      </persistentData>
      <PrinterSettings/>
      <publishHistory>
-          <PublishItem publishSize="10068" publishTime="1463522881" publishDebug="true"/>
-          <PublishItem publishSize="10079" publishTime="1463522239" publishDebug="true"/>
-          <PublishItem publishSize="10080" publishTime="1463522156" publishDebug="true"/>
-          <PublishItem publishSize="10079" publishTime="1463522103" publishDebug="true"/>
-          <PublishItem publishSize="10068" publishTime="1463521996" publishDebug="true"/>
-          <PublishItem publishSize="10053" publishTime="1463521386" publishDebug="true"/>
-          <PublishItem publishSize="10053" publishTime="1463521362" publishDebug="true"/>
-          <PublishItem publishSize="10036" publishTime="1463521168" publishDebug="true"/>
-          <PublishItem publishSize="10034" publishTime="1463521106" publishDebug="true"/>
-          <PublishItem publishSize="10034" publishTime="1463521058" publishDebug="true"/>
-          <PublishItem publishSize="10038" publishTime="1463520986" publishDebug="true"/>
-          <PublishItem publishSize="10036" publishTime="1463520910" publishDebug="true"/>
-          <PublishItem publishSize="10027" publishTime="1463520480" publishDebug="true"/>
-          <PublishItem publishSize="10027" publishTime="1463520297" publishDebug="true"/>
-          <PublishItem publishSize="10027" publishTime="1463520274" publishDebug="true"/>
-          <PublishItem publishSize="10027" publishTime="1463520252" publishDebug="true"/>
-          <PublishItem publishSize="10024" publishTime="1463520142" publishDebug="true"/>
-          <PublishItem publishSize="10021" publishTime="1463520099" publishDebug="true"/>
-          <PublishItem publishSize="10031" publishTime="1463520052" publishDebug="true"/>
-          <PublishItem publishSize="10032" publishTime="1463519917" publishDebug="true"/>
+          <PublishItem publishSize="10380" publishTime="1463525429" publishDebug="true"/>
      </publishHistory>
 </DOMDocument>
