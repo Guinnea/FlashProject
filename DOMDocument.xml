@@ -85,7 +85,7 @@ var worldAttributes = {
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="Player Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
+                    <DOMLayer name="Player Script" color="#4F80FF" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -102,27 +102,13 @@ stage.addEventListener(KeyboardEvent.KEY_UP, stopPlayerSpin)
 stage.addEventListener(Event.ENTER_FRAME, monitorKeyboardState);
 
 player.x = 400;
-<<<<<<< HEAD
-player.y = 135;
-player.inAir = false;
-player.maxHeight = 15;
-player.jumpHeight = 0;
-player.jumpReady = true;
-player.jumping = false;
-player.jumpSpeed;
-=======
 player.y = 185;
 //player.inAir = false;
 //player.maxHeight = 20;
 //player.jumpHeight = 0;
->>>>>>> origin/master
 
 function monitorKeyboardState(e:Event):void {
 
-	
-	//MOVEMENT *************************
-	
-	// Both or Neither
 	if(
 		(player.playerAttributes.rightDown == false && player.playerAttributes.leftDown == false) ||
 		(player.playerAttributes.rightDown == true && player.playerAttributes.leftDown == true))
@@ -131,29 +117,10 @@ function monitorKeyboardState(e:Event):void {
 		player.playerAttributes.ang -= World1.worldAttributes.rotationSpeed;
 		
 		player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
-<<<<<<< HEAD
-		player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 300;
-		
-		//Orientation relative to world
-=======
 		player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
->>>>>>> origin/master
 		player.rotation += World1.worldAttributes.rotationSpeed;
 	}
-	
-	// Left
 	else if(player.playerAttributes.leftDown == true && player.playerAttributes.rightDown == false)
-<<<<<<< HEAD
-	{
-		player.playerAttributes.ang -= 
-		player.playerAttributes.angleSpeed + (World1.worldAttributes.rotationSpeed * (1.4));
-			
-			if(player.playerAttributes.ang <=0)
-		player.playerAttributes.ang +=360;
-	
-		player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;	
-		player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 300;
-=======
 		{
 			player.playerAttributes.ang -= 
 			//player.playerAttributes.angleSpeed + (World1.worldAttributes.rotationSpeed * 1.4);
@@ -170,68 +137,8 @@ function monitorKeyboardState(e:Event):void {
 			player.rotation += player.playerAttributes.rotationSpeed + (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
 			editorMenu.playerSpeedOutput.text = player.playerAttributes.ang.toString();
 		}
->>>>>>> origin/master
 		
-		//Orientation relative to world
-		player.rotation += player.playerAttributes.rotationSpeed + (World1.worldAttributes.rotationSpeed * (1.4));
-	}
-	
-	// Right
 	else if(player.playerAttributes.rightDown == true && player.playerAttributes.leftDown == false)
-<<<<<<< HEAD
-	{
-		player.playerAttributes.ang += 
-		player.playerAttributes.angleSpeed - (World1.worldAttributes.rotationSpeed * (1.4));
-		
-		if(player.playerAttributes.ang >=360)
-			player.playerAttributes.ang -=360;
-		
-		player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
-		player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 300;
-		
-		//Orientation relative to world
-		player.rotation -= player.playerAttributes.rotationSpeed - (World1.worldAttributes.rotationSpeed * (1.4));
-	}
-	
-	//END MOVEMENT ************************
-	
-	//JUMP
-	
-	if(player.playerAttributes.jumpKey == true && player.jumpHeight <= 0 && player.jumpReady == true)
-	{
-		player.jumpReady = false;
-		player.jumping = true;
-		player.jumpSpeed = (Math.abs(player.playerAttributes.rotationSpeed) + Math.abs(World1.worldAttributes.rotationSpeed))
-		player.maxHeight = player.jumpSpeed * 8;
-	}
-	
-	if (player.jumpReady == false)
-	{
-			if (player.jumping == true && player.jumpHeight <= player.maxHeight)
-			{
-				player.jumpHeight += player.jumpSpeed;
-			}
-			else
-			{
-				player.jumping = false;
-			}
-			if (player.jumping == false && player.jumpHeight > 0 && (player.jumpHeight - player.jumpSpeed) >=0)
-			{
-				player.jumpHeight -= player.jumpSpeed;
-			}
-			else if ((player.jumping == false && player.jumpHeight <= 0) ||
-				(player.jumping == false && player.jumpHeight > 0 && (player.jumpHeight - player.jumpSpeed) < 0))
-			{
-				player.jumpReady = true;
-				player.jumpHeight = 0;
-			}
-			
-			player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 
-			(163 + (player.jumpHeight))) + 400;
-			player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 
-			(163 + (player.jumpHeight))) + 300;
-	}
-=======
 		{
 			player.playerAttributes.ang += 
 			//player.playerAttributes.angleSpeed - (World1.worldAttributes.rotationSpeed * 1.4);
@@ -248,7 +155,6 @@ function monitorKeyboardState(e:Event):void {
 			player.rotation -= player.playerAttributes.rotationSpeed - (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
 			editorMenu.playerSpeedOutput.text = player.playerAttributes.ang.toString();
 		}
->>>>>>> origin/master
 }
 
 function stopPlayerSpin(e:KeyboardEvent):void
@@ -273,8 +179,8 @@ function startPlayerSpin(e:KeyboardEvent):void
 	
 }
 
-function AngleToRadians(angle)
-{
+
+function AngleToRadians(angle){
 	var returnAngle = Math.PI * angle / 180;
 	return returnAngle;
 }
@@ -371,6 +277,7 @@ stage.addEventListener(Event.ENTER_FRAME, promptBlock);
 
 var blockCounter = 0;
 var nextBlock =(Math.random()*90)+30;
+var thisthat = 0;
 //var nextBlock = 30;
 var prompt = false;
 var smallCount = 0;
@@ -458,8 +365,7 @@ addChild(that);]]></script>
 
 stage.addEventListener(Event.ENTER_FRAME, MonitorGameState);
 
-function MonitorGameState(e:Event):void 
-{
+function MonitorGameState(e:Event):void {
 	if(changeMade == true){
 		player.playerAttributes.rotationSpeed = Number(editorMenu.textPlayerSpeed.text);
 		player.playerAttributes.angleSpeed = Number(editorMenu.textPlayerSpeed.text);
@@ -481,32 +387,9 @@ function MonitorGameState(e:Event):void
      </persistentData>
      <PrinterSettings/>
      <publishHistory>
-<<<<<<< HEAD
-          <PublishItem publishSize="10665" publishTime="1464918688" publishDebug="true"/>
-          <PublishItem publishSize="10666" publishTime="1464918355" publishDebug="true"/>
-          <PublishItem publishSize="10666" publishTime="1464917745" publishDebug="true"/>
-          <PublishItem publishSize="10682" publishTime="1464917537" publishDebug="true"/>
-          <PublishItem publishSize="10660" publishTime="1464917305" publishDebug="true"/>
-          <PublishItem publishSize="10644" publishTime="1464917142" publishDebug="true"/>
-          <PublishItem publishSize="10624" publishTime="1464916745" publishDebug="true"/>
-          <PublishItem publishSize="10625" publishTime="1464916599" publishDebug="true"/>
-          <PublishItem publishSize="10624" publishTime="1464916511" publishDebug="true"/>
-          <PublishItem publishSize="10623" publishTime="1464916433" publishDebug="true"/>
-          <PublishItem publishSize="10620" publishTime="1464916400" publishDebug="true"/>
-          <PublishItem publishSize="10608" publishTime="1464916286" publishDebug="true"/>
-          <PublishItem publishSize="10607" publishTime="1464916145" publishDebug="true"/>
-          <PublishItem publishSize="10608" publishTime="1464916113" publishDebug="true"/>
-          <PublishItem publishSize="10607" publishTime="1464915868" publishDebug="true"/>
-          <PublishItem publishSize="10608" publishTime="1464915412" publishDebug="true"/>
-          <PublishItem publishSize="10609" publishTime="1464915400" publishDebug="true"/>
-          <PublishItem publishSize="10611" publishTime="1464915055" publishDebug="true"/>
-          <PublishItem publishSize="10611" publishTime="1464915036" publishDebug="true"/>
-          <PublishItem publishSize="10611" publishTime="1464914904" publishDebug="true"/>
-=======
           <PublishItem publishSize="11265" publishTime="1464917779" publishDebug="true"/>
           <PublishItem publishSize="10066" publishTime="1464913154"/>
           <PublishItem publishSize="9789" publishTime="1464907895"/>
           <PublishItem publishSize="10380" publishTime="1463525429" publishDebug="true"/>
->>>>>>> origin/master
      </publishHistory>
 </DOMDocument>
