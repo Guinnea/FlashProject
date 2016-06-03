@@ -163,7 +163,7 @@ function monitorKeyboardState(e:Event):void {
 		}
 		
 	//END MOVEMENT ************************
-	
+	//
 	//JUMP
 	
 	if(player.playerAttributes.jumpKey == true && player.jumpHeight <= 0 && player.jumpReady == true)
