@@ -1,10 +1,10 @@
-<DOMDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" width="800" height="600" frameRate="30" currentTimeline="1" xflVersion="2.6" creatorInfo="Adobe Flash Professional CC" platform="Windows" versionInfo="Saved by Adobe Flash Windows 15.0 build 173" majorVersion="15" buildNumber="173" timelineLabelWidth="241" viewAngle3D="74.2651684569298" nextSceneIdentifier="2" playOptionsPlayLoop="false" playOptionsPlayPages="false" playOptionsPlayFrameActions="false" filetypeGUID="DD0DDBBF-5BEF-45B2-9F24-A3048D2A676F">
+<DOMDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" width="800" height="800" frameRate="30" currentTimeline="1" xflVersion="2.6" creatorInfo="Adobe Flash Professional CC" platform="Windows" versionInfo="Saved by Adobe Flash Windows 15.0 build 173" majorVersion="15" buildNumber="173" timelineLabelWidth="241" viewAngle3D="74.2651684569298" nextSceneIdentifier="2" playOptionsPlayLoop="false" playOptionsPlayPages="false" playOptionsPlayFrameActions="false" filetypeGUID="DD0DDBBF-5BEF-45B2-9F24-A3048D2A676F">
      <fonts>
           <DOMFontItem name="Font 1" itemID="57324e8a-00000043" linkageExportForAS="true" linkageBaseClass="flash.text.Font" linkageClassName="Font1" font="ArialMT" size="0" id="1" sourceLastImported="1462914755" embeddedCharacters="." embedRanges="3"/>
      </fonts>
      <symbols>
           <Include href="dude.xml" itemID="572901cb-0000001d" lastModified="1462916712"/>
-          <Include href="EditorMenu.xml" itemID="573244f6-00000018" lastModified="1463519014"/>
+          <Include href="EditorMenu.xml" itemID="573244f6-00000018" lastModified="1464912807"/>
           <Include href="menuButtonClose.xml" itemIcon="0" loadImmediate="false" itemID="573249cb-00000035" lastModified="1462913483"/>
           <Include href="menuButtonOpen.xml" itemIcon="0" loadImmediate="false" itemID="573249c2-00000034" lastModified="1462913509"/>
           <Include href="world.xml" itemID="5728f764-00000005" lastModified="1463524962"/>
@@ -15,33 +15,6 @@
                     <DOMLayer name="Scene" color="#4F80FF" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
-                                   <Actionscript>
-                                        <script><![CDATA[var size:uint = 100; 
-var roundObject:Shape = new Shape(); 
-var qang = 135; 
-
-// green circular shape 
-roundObject.graphics.beginFill(0x00FF00); 
-roundObject.graphics.moveTo(200 + size / 2, 0); 
-roundObject.graphics.curveTo(200 + size, 0, 200 + size, size / 2); 
-roundObject.graphics.curveTo(200 + size, size, 200 + size / 2, size); 
-roundObject.graphics.curveTo(200, size, 200, size / 2); 
-roundObject.graphics.curveTo(200, 0, 200 + size / 2, 0);
-
-// red circular shape 
-roundObject.graphics.beginFill(0xFF0000);
-roundObject.graphics.moveTo(400 -  (Math.sin(AngleToRadians(qang)) * 150), 300 + (Math.cos(AngleToRadians(qang)) * 150)); 
-//roundObject.graphics.moveTo(400 -  (Math.sin(AngleToRadians(qang)) * 165), 300 + (Math.cos(AngleToRadians(qang)) * 165)); 
-qang = 225;
-roundObject.graphics.curveTo(400, 300-200, 400 -  (Math.sin(AngleToRadians(qang)) * 150), 300 + (Math.cos(AngleToRadians(qang)) * 150)); 
-roundObject.graphics.curveTo(50, 50, 50, 0); 
-roundObject.graphics.curveTo(50, 50, 0, 50); 
-roundObject.graphics.curveTo(0, 50, 50, 50); 
- 
- 
- 
-this.addChild(roundObject);]]></script>
-                                   </Actionscript>
                                    <elements/>
                               </DOMFrame>
                          </frames>
@@ -129,6 +102,7 @@ stage.addEventListener(KeyboardEvent.KEY_UP, stopPlayerSpin)
 stage.addEventListener(Event.ENTER_FRAME, monitorKeyboardState);
 
 player.x = 400;
+<<<<<<< HEAD
 player.y = 135;
 player.inAir = false;
 player.maxHeight = 15;
@@ -136,6 +110,12 @@ player.jumpHeight = 0;
 player.jumpReady = true;
 player.jumping = false;
 player.jumpSpeed;
+=======
+player.y = 185;
+//player.inAir = false;
+//player.maxHeight = 20;
+//player.jumpHeight = 0;
+>>>>>>> origin/master
 
 function monitorKeyboardState(e:Event):void {
 
@@ -151,14 +131,19 @@ function monitorKeyboardState(e:Event):void {
 		player.playerAttributes.ang -= World1.worldAttributes.rotationSpeed;
 		
 		player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
+<<<<<<< HEAD
 		player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 300;
 		
 		//Orientation relative to world
+=======
+		player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
+>>>>>>> origin/master
 		player.rotation += World1.worldAttributes.rotationSpeed;
 	}
 	
 	// Left
 	else if(player.playerAttributes.leftDown == true && player.playerAttributes.rightDown == false)
+<<<<<<< HEAD
 	{
 		player.playerAttributes.ang -= 
 		player.playerAttributes.angleSpeed + (World1.worldAttributes.rotationSpeed * (1.4));
@@ -168,6 +153,24 @@ function monitorKeyboardState(e:Event):void {
 	
 		player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;	
 		player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 300;
+=======
+		{
+			player.playerAttributes.ang -= 
+			//player.playerAttributes.angleSpeed + (World1.worldAttributes.rotationSpeed * 1.4);
+			player.playerAttributes.angleSpeed + (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
+			
+			if(player.playerAttributes.ang <=0){
+				player.playerAttributes.ang +=360;
+			} else if(player.playerAttributes.ang >360){
+				player.playerAttributes.ang -=360;
+			}
+			
+			player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
+			player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
+			player.rotation += player.playerAttributes.rotationSpeed + (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
+			editorMenu.playerSpeedOutput.text = player.playerAttributes.ang.toString();
+		}
+>>>>>>> origin/master
 		
 		//Orientation relative to world
 		player.rotation += player.playerAttributes.rotationSpeed + (World1.worldAttributes.rotationSpeed * (1.4));
@@ -175,6 +178,7 @@ function monitorKeyboardState(e:Event):void {
 	
 	// Right
 	else if(player.playerAttributes.rightDown == true && player.playerAttributes.leftDown == false)
+<<<<<<< HEAD
 	{
 		player.playerAttributes.ang += 
 		player.playerAttributes.angleSpeed - (World1.worldAttributes.rotationSpeed * (1.4));
@@ -227,6 +231,24 @@ function monitorKeyboardState(e:Event):void {
 			player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 
 			(163 + (player.jumpHeight))) + 300;
 	}
+=======
+		{
+			player.playerAttributes.ang += 
+			//player.playerAttributes.angleSpeed - (World1.worldAttributes.rotationSpeed * 1.4);
+			player.playerAttributes.angleSpeed - (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
+			
+			if(player.playerAttributes.ang >=360){
+				player.playerAttributes.ang -=360;
+			} else if(player.playerAttributes.ang <0){
+				player.playerAttributes.ang =360;
+			}
+			
+			player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
+			player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
+			player.rotation -= player.playerAttributes.rotationSpeed - (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
+			editorMenu.playerSpeedOutput.text = player.playerAttributes.ang.toString();
+		}
+>>>>>>> origin/master
 }
 
 function stopPlayerSpin(e:KeyboardEvent):void
@@ -281,7 +303,7 @@ stage.addEventListener(KeyboardEvent.KEY_UP, stopWorldSpin);
 stage.addEventListener(Event.ENTER_FRAME, monitorWorldKeyboardState);
 
 World1.x = 400;
-World1.y = 300;
+World1.y = 400;
 
 function monitorWorldKeyboardState(e:Event):void {
 	if ((World1.worldAttributes.leftDown == false && World1.worldAttributes.rightDown == false) ||
@@ -289,10 +311,10 @@ function monitorWorldKeyboardState(e:Event):void {
 	{
 		
 		if(World1.worldAttributes.rotationSpeed < 0)
-		World1.worldAttributes.rotationSpeed += (50 / World1.worldAttributes.mass);
+		World1.worldAttributes.rotationSpeed += ((player.playerAttributes.rotationSpeed * 25) / World1.worldAttributes.mass);
 		
 		else if (World1.worldAttributes.rotationSpeed > 0)
-		World1.worldAttributes.rotationSpeed -= (50 / World1.worldAttributes.mass);
+		World1.worldAttributes.rotationSpeed -= ((player.playerAttributes.rotationSpeed * 25) / World1.worldAttributes.mass);
 	}
 	else if (
 			World1.worldAttributes.rotationSpeed < World1.worldAttributes.maxRotationSpeed && 
@@ -300,15 +322,18 @@ function monitorWorldKeyboardState(e:Event):void {
 	{
 		if(World1.worldAttributes.leftDown == true)
 		{
-			World1.worldAttributes.rotationSpeed -= (50 / World1.worldAttributes.mass);
+			World1.worldAttributes.rotationSpeed -= ((player.playerAttributes.rotationSpeed * 25) / World1.worldAttributes.mass);
 		}
 		if(World1.worldAttributes.rightDown == true)
 		{
-			World1.worldAttributes.rotationSpeed += (50 / World1.worldAttributes.mass);
+			World1.worldAttributes.rotationSpeed += ((player.playerAttributes.rotationSpeed * 25) / World1.worldAttributes.mass);
 		}
 	}
 	
-	World1.rotation += World1.worldAttributes.rotationSpeed;
+	if(World1.worldAttributes.rotationSpeed > 0.05 || World1.worldAttributes.rotationSpeed < -0.05){
+		World1.rotation += World1.worldAttributes.rotationSpeed;
+	}
+	editorMenu.worldSpeedOutput.text = World1.rotation.toString();
 }
 
 function stopWorldSpin(e:KeyboardEvent):void{
@@ -329,6 +354,97 @@ function startWorldSpin(e:KeyboardEvent):void{
 	}
 }
 ]]></script>
+                                   </Actionscript>
+                                   <elements/>
+                              </DOMFrame>
+                         </frames>
+                    </DOMLayer>
+                    <DOMLayer name="Block Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
+                         <frames>
+                              <DOMFrame index="0" keyMode="9728">
+                                   <Actionscript>
+                                        <script><![CDATA[import flash.events.Event;
+import flash.display.Sprite;
+
+stage.addEventListener(Event.ENTER_FRAME, addBlock);
+stage.addEventListener(Event.ENTER_FRAME, promptBlock);
+
+var blockCounter = 0;
+var nextBlock =(Math.random()*90)+30;
+//var nextBlock = 30;
+var prompt = false;
+var smallCount = 0;
+var promptSprite:Sprite = new Sprite();
+var oneTimeBool = true;
+//addChild(promptSprite);
+
+function addBlock(e:Event):void {
+	blockCounter++;
+	if(blockCounter >= nextBlock && oneTimeBool == true){
+		prompt = true;
+		promptSprite = new Sprite();
+		graphics.lineStyle(2,0x000000);
+		promptSprite.graphics.beginFill(0x666666);
+		promptSprite.graphics.moveTo(350, 25);
+		promptSprite.graphics.lineTo(450,25);
+		promptSprite.graphics.lineTo(450,65);
+		promptSprite.graphics.lineTo(350,65);
+		promptSprite.graphics.lineTo(350,25);
+		promptSprite.graphics.endFill();
+		addChild(promptSprite);
+		oneTimeBool = false;
+	}
+}
+function promptBlock(e:Event):void {
+	if(prompt == true){
+		smallCount ++;
+		
+		if(smallCount % 5 >= 0 && smallCount % 5 <= 0.6){
+			promptSprite.visible = true;
+		} else {
+			promptSprite.visible = false;
+		}
+		if(smallCount > 80){
+			prompt = false;
+			smallCount = 0;
+			nextBlock = (Math.random()*90)+30;
+			removeChild(promptSprite);
+			oneTimeBool = true;
+			blockCounter = 0;
+		}
+	}	
+}
+
+function drawSegment(target:Sprite, x:Number, y:Number, r:Number, s:Number, e:Number, h:Number, color:uint=0x0):void {
+        // More efficient to work in radians
+        var degreesPerRadian:Number = Math.PI / 180;
+        s *= degreesPerRadian;
+        e *= degreesPerRadian;
+		var S = e;
+		var E = s;
+	
+        // Draw the segment
+        target.graphics.beginFill(color,1); // second parameter is alpha
+        target.graphics.moveTo(x + r * Math.cos(s), y + r * Math.sin(s));
+        for (var t:Number = s; t < e; t += 0.1) {
+            target.graphics.lineTo(x + (r+h) * Math.cos(t), y + (r+h) * Math.sin(t));
+        }
+        target.graphics.lineTo(x + (r+h) * Math.cos(e), y + (r+h) * Math.sin(e));
+		target.graphics.lineTo(x + r * Math.cos(e), y + r * Math.sin(e));
+		
+		for (var u:Number = S; u > E; u -= 0.1) {
+            target.graphics.lineTo(x + r * Math.cos(u), y + r * Math.sin(u));
+        }
+        target.graphics.endFill();
+};
+
+graphics.lineStyle(2,0x000000);
+var that:Sprite = new Sprite();
+// Object, center of arc x, y, start at radius from center, start angle, end angle, height of object, color
+drawSegment(that,400,400,150,-135,-45, 40, 0xff0000);
+//that.visible = false;
+//drawSegment(that,400,400,150,-90,90, 40, 0xff0000);
+addChild(that);]]></script>
                                    </Actionscript>
                                    <elements/>
                               </DOMFrame>
@@ -365,6 +481,7 @@ function MonitorGameState(e:Event):void
      </persistentData>
      <PrinterSettings/>
      <publishHistory>
+<<<<<<< HEAD
           <PublishItem publishSize="10665" publishTime="1464918688" publishDebug="true"/>
           <PublishItem publishSize="10666" publishTime="1464918355" publishDebug="true"/>
           <PublishItem publishSize="10666" publishTime="1464917745" publishDebug="true"/>
@@ -385,5 +502,11 @@ function MonitorGameState(e:Event):void
           <PublishItem publishSize="10611" publishTime="1464915055" publishDebug="true"/>
           <PublishItem publishSize="10611" publishTime="1464915036" publishDebug="true"/>
           <PublishItem publishSize="10611" publishTime="1464914904" publishDebug="true"/>
+=======
+          <PublishItem publishSize="11265" publishTime="1464917779" publishDebug="true"/>
+          <PublishItem publishSize="10066" publishTime="1464913154"/>
+          <PublishItem publishSize="9789" publishTime="1464907895"/>
+          <PublishItem publishSize="10380" publishTime="1463525429" publishDebug="true"/>
+>>>>>>> origin/master
      </publishHistory>
 </DOMDocument>
