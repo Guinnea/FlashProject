@@ -85,7 +85,7 @@ var worldAttributes = {
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="Player Script" color="#4F80FF" autoNamed="false">
+                    <DOMLayer name="Player Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -102,13 +102,19 @@ stage.addEventListener(KeyboardEvent.KEY_UP, stopPlayerSpin)
 stage.addEventListener(Event.ENTER_FRAME, monitorKeyboardState);
 
 player.x = 400;
-player.y = 185;
-//player.inAir = false;
-//player.maxHeight = 20;
-//player.jumpHeight = 0;
+player.y = 135;
+player.inAir = false;
+player.maxHeight = 15;
+player.jumpHeight = 0;
+player.jumpReady = true;
+player.jumping = false;
+player.jumpSpeed;
+
 
 function monitorKeyboardState(e:Event):void {
-
+	
+	//MOVEMENT **************************
+	
 	if(
 		(player.playerAttributes.rightDown == false && player.playerAttributes.leftDown == false) ||
 		(player.playerAttributes.rightDown == true && player.playerAttributes.leftDown == true))
@@ -155,6 +161,45 @@ function monitorKeyboardState(e:Event):void {
 			player.rotation -= player.playerAttributes.rotationSpeed - (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
 			editorMenu.playerSpeedOutput.text = player.playerAttributes.ang.toString();
 		}
+		
+	//END MOVEMENT ************************
+	
+	//JUMP
+	
+	if(player.playerAttributes.jumpKey == true && player.jumpHeight <= 0 && player.jumpReady == true)
+	{
+		player.jumpReady = false;
+		player.jumping = true;
+		player.jumpSpeed = (Math.abs(player.playerAttributes.rotationSpeed) + Math.abs(World1.worldAttributes.rotationSpeed))
+		player.maxHeight = player.jumpSpeed * 8;
+	}
+	
+	if (player.jumpReady == false)
+	{
+			if (player.jumping == true && player.jumpHeight <= player.maxHeight)
+			{
+				player.jumpHeight += player.jumpSpeed;
+			}
+			else
+			{
+				player.jumping = false;
+			}
+			if (player.jumping == false && player.jumpHeight > 0 && (player.jumpHeight - player.jumpSpeed) >=0)
+			{
+				player.jumpHeight -= player.jumpSpeed;
+			}
+			else if ((player.jumping == false && player.jumpHeight <= 0) ||
+				(player.jumping == false && player.jumpHeight > 0 && (player.jumpHeight - player.jumpSpeed) < 0))
+			{
+				player.jumpReady = true;
+				player.jumpHeight = 0;
+			}
+			
+			player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 
+			(163 + (player.jumpHeight))) + 400;
+			player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 
+			(163 + (player.jumpHeight))) + 400;
+	}
 }
 
 function stopPlayerSpin(e:KeyboardEvent):void
@@ -265,7 +310,7 @@ function startWorldSpin(e:KeyboardEvent):void{
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="Block Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
+                    <DOMLayer name="Block Script" color="#4F80FF" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -387,6 +432,8 @@ function MonitorGameState(e:Event):void {
      </persistentData>
      <PrinterSettings/>
      <publishHistory>
+          <PublishItem publishSize="11598" publishTime="1464919214" publishDebug="true"/>
+          <PublishItem publishSize="11340" publishTime="1464919129" publishDebug="true"/>
           <PublishItem publishSize="11265" publishTime="1464917779" publishDebug="true"/>
           <PublishItem publishSize="10066" publishTime="1464913154"/>
           <PublishItem publishSize="9789" publishTime="1464907895"/>
