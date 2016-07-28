@@ -103,7 +103,7 @@ var cornerAttributes = {
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="Player Script" color="#4F80FF" autoNamed="false">
+                    <DOMLayer name="Player Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -158,30 +158,9 @@ function monitorKeyboardState(e:Event):void
 	
 	//Left Key
 	else if(player.playerAttributes.leftDown == true && player.playerAttributes.rightDown == false)
-<<<<<<< HEAD
 	{
 		player.playerAttributes.ang -= 
 		player.playerAttributes.angleSpeed + (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
-=======
-		{
-			player.playerAttributes.ang -= 
-			//player.playerAttributes.angleSpeed + (World1.worldAttributes.rotationSpeed * 1.4);
-			player.playerAttributes.angleSpeed + (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
-			
-			
-			if(player.playerAttributes.ang <=0){
-				player.playerAttributes.ang +=360;
-			} else if(player.playerAttributes.ang >360){
-				player.playerAttributes.ang -=360;
-			}
-			
-			
-			player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
-			player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
-			player.rotation += player.playerAttributes.rotationSpeed + (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
-			editorMenu.playerSpeedOutput.text = player.playerAttributes.rotationSpeed.toString();
-		}
->>>>>>> origin/master
 		
 		updatePlayerAngle();
 		player.rotation += player.playerAttributes.rotationSpeed + (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
@@ -189,30 +168,11 @@ function monitorKeyboardState(e:Event):void
 	
 	//Right Key
 	else if(player.playerAttributes.rightDown == true && player.playerAttributes.leftDown == false)
-<<<<<<< HEAD
 	{
 		player.playerAttributes.ang += 
 		player.playerAttributes.angleSpeed - (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
 		
 		updatePlayerAngle();
-=======
-		{
-			player.playerAttributes.ang += 
-			//player.playerAttributes.angleSpeed - (World1.worldAttributes.rotationSpeed * 1.4);
-			player.playerAttributes.angleSpeed - (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
-			
-			if(player.playerAttributes.ang >=360){
-				player.playerAttributes.ang -=360;
-			} else if(player.playerAttributes.ang <0){
-				player.playerAttributes.ang =360;
-			}
-			
-			player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
-			player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
-			player.rotation -= player.playerAttributes.rotationSpeed - (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
-			editorMenu.playerSpeedOutput.text = player.playerAttributes.rotationSpeed.toString();
-		}
->>>>>>> origin/master
 		
 		player.rotation -= player.playerAttributes.rotationSpeed - (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
 		editorMenu.playerSpeedOutput.text = player.playerAttributes.ang.toString();
@@ -307,30 +267,18 @@ function updatePlayerAngle()
 	editorMenu.playerSpeedOutput.text = player.playerAttributes.ang.toString();
 }
 
-<<<<<<< HEAD
-function AngleToRadians(angle)
-{
-	var returnAngle = Math.PI * angle / 180;
-	return returnAngle;
-}
-
-=======
->>>>>>> origin/master
-
-
 ]]></script>
                                    </Actionscript>
                                    <elements/>
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="World Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
+                    <DOMLayer name="World Script" color="#4F80FF" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
                                         <script><![CDATA[import flash.events.Event;
 import flash.events.KeyboardEvent;
-import flash.geom.Point;
 
 var World1:world_ = new world_;
 World1.worldAttributes = worldAttributes;
@@ -346,68 +294,43 @@ World1.y = 400;
 function monitorWorldKeyboardState(e:Event):void 
 {
 	if ((World1.worldAttributes.leftDown == false && World1.worldAttributes.rightDown == false) ||
-<<<<<<< HEAD
 		(World1.worldAttributes.leftDown == true && World1.worldAttributes.rightDown == true) || player.jumpReady == false)
-=======
-		World1.worldAttributes.leftDown == true && World1.worldAttributes.rightDown == true ||
-		player.jumpReady == false)
->>>>>>> origin/master
 	{
 		
 		if(World1.worldAttributes.rotationSpeed < 0)
-		World1.worldAttributes.rotationSpeed += (player.playerAttributes.rotationSpeed * 25 / World1.worldAttributes.mass);
+		World1.worldAttributes.rotationSpeed += ((player.playerAttributes.rotationSpeed * 25) / World1.worldAttributes.mass);
 		
 		else if (World1.worldAttributes.rotationSpeed > 0)
-		World1.worldAttributes.rotationSpeed -= (player.playerAttributes.rotationSpeed * 25 / World1.worldAttributes.mass);
+		World1.worldAttributes.rotationSpeed -= ((player.playerAttributes.rotationSpeed * 25) / World1.worldAttributes.mass);
 	}
 	else if (
-<<<<<<< HEAD
 			World1.worldAttributes.rotationSpeed < World1.worldAttributes.maxRotationSpeed && 
 			World1.worldAttributes.rotationSpeed > -World1.worldAttributes.maxRotationSpeed &&
 			player.jumpReady == true)
-=======
-			World1.worldAttributes.rotationSpeed <= World1.worldAttributes.maxRotationSpeed && 
-			World1.worldAttributes.rotationSpeed >= -World1.worldAttributes.maxRotationSpeed && 
-			World1.worldAttributes.leftDown == true && World1.worldAttributes.rightDown == false)
->>>>>>> origin/master
 	{
-		World1.worldAttributes.rotationSpeed -= ((player.playerAttributes.rotationSpeed * 25) / World1.worldAttributes.mass);
-		if (World1.worldAttributes.rotationSpeed < -World1.worldAttributes.maxRotationSpeed){
-			World1.worldAttributes.rotationSpeed = -World1.worldAttributes.maxRotationSpeed;
+		if(World1.worldAttributes.leftDown == true)
+		{
+			World1.worldAttributes.rotationSpeed -= ((player.playerAttributes.rotationSpeed * 25) / World1.worldAttributes.mass);
 		}
-	}
-	else if (
-			World1.worldAttributes.rotationSpeed <= World1.worldAttributes.maxRotationSpeed && 
-			World1.worldAttributes.rotationSpeed >= -World1.worldAttributes.maxRotationSpeed && 
-			World1.worldAttributes.leftDown == false && World1.worldAttributes.rightDown == true)
-	{
-		World1.worldAttributes.rotationSpeed += ((player.playerAttributes.rotationSpeed * 25) / World1.worldAttributes.mass);
-		if (World1.worldAttributes.rotationSpeed > World1.worldAttributes.maxRotationSpeed){
-			World1.worldAttributes.rotationSpeed = World1.worldAttributes.maxRotationSpeed;
-		} 
+		if(World1.worldAttributes.rightDown == true)
+		{
+			World1.worldAttributes.rotationSpeed += ((player.playerAttributes.rotationSpeed * 25) / World1.worldAttributes.mass);
+		}
 	}
 	
 	if(World1.worldAttributes.rotationSpeed > 0.05 || World1.worldAttributes.rotationSpeed < -0.05)
 	{
 		World1.rotation += World1.worldAttributes.rotationSpeed;
 	}
-<<<<<<< HEAD
 
 	editorMenu.worldSpeedOutput.text = World1.rotation.toString();
-=======
-	editorMenu.worldSpeedOutput.text = World1.worldAttributes.rightDown.toString() + " " + World1.worldAttributes.leftDown.toString();
-	
-	//if(totalCorners >0){
-	//	trace(corners[0].localToGlobal(new Point( 0 , 0 )));
-	//}
->>>>>>> origin/master
 }
 
 function stopWorldSpin(e:KeyboardEvent):void{
 	if(e.keyCode == 39) {
 		World1.worldAttributes.leftDown = false;		
 	}
-	else if(e.keyCode == 37) {
+	if(e.keyCode == 37) {
 		World1.worldAttributes.rightDown = false;		
 	}
 }
@@ -416,7 +339,7 @@ function startWorldSpin(e:KeyboardEvent):void{
 	if(e.keyCode == 39) {
 		World1.worldAttributes.leftDown = true;		
 	}
-	else if(e.keyCode == 37) {
+	if(e.keyCode == 37) {
 		World1.worldAttributes.rightDown = true;		
 	}
 }
@@ -426,7 +349,7 @@ function startWorldSpin(e:KeyboardEvent):void{
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="Block Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
+                    <DOMLayer name="Block Script" color="#4F80FF" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -794,6 +717,7 @@ function doThat( x ){
      </persistentData>
      <PrinterSettings/>
      <publishHistory>
+          <PublishItem publishSize="21385" publishTime="1469742278" publishDebug="true"/>
           <PublishItem publishSize="11631" publishTime="1468539242" publishDebug="true"/>
           <PublishItem publishSize="11619" publishTime="1468539199" publishDebug="true"/>
           <PublishItem publishSize="11629" publishTime="1468539127" publishDebug="true"/>
@@ -813,6 +737,5 @@ function doThat( x ){
           <PublishItem publishSize="11626" publishTime="1468532688" publishDebug="true"/>
           <PublishItem publishSize="11625" publishTime="1468532340" publishDebug="true"/>
           <PublishItem publishSize="11631" publishTime="1468532291" publishDebug="true"/>
-          <PublishItem publishSize="11618" publishTime="1468531840" publishDebug="true"/>
      </publishHistory>
 </DOMDocument>
