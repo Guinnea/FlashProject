@@ -103,7 +103,7 @@ var cornerAttributes = {
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="Player Script" color="#4F80FF" autoNamed="false">
+                    <DOMLayer name="Player Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -145,6 +145,7 @@ function monitorKeyboardState(e:Event):void {
 		player.rotation += World1.worldAttributes.rotationSpeed;
 	}
 	else if(player.playerAttributes.leftDown == true && player.playerAttributes.rightDown == false)
+<<<<<<< HEAD
 		{
 			player.playerAttributes.ang -= 
 			//player.playerAttributes.angleSpeed + (World1.worldAttributes.rotationSpeed * 1.4);
@@ -163,8 +164,14 @@ function monitorKeyboardState(e:Event):void {
 			player.rotation += player.playerAttributes.rotationSpeed + (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
 			editorMenu.playerSpeedOutput.text = player.playerAttributes.rotationSpeed.toString();
 		}
+=======
+	{
+		player.playerAttributes.ang -= 
+		player.playerAttributes.angleSpeed + (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
+>>>>>>> origin/master
 		
 	else if(player.playerAttributes.rightDown == true && player.playerAttributes.leftDown == false)
+<<<<<<< HEAD
 		{
 			player.playerAttributes.ang += 
 			//player.playerAttributes.angleSpeed - (World1.worldAttributes.rotationSpeed * 1.4);
@@ -181,6 +188,13 @@ function monitorKeyboardState(e:Event):void {
 			player.rotation -= player.playerAttributes.rotationSpeed - (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
 			editorMenu.playerSpeedOutput.text = player.playerAttributes.rotationSpeed.toString();
 		}
+=======
+	{
+		player.playerAttributes.ang += 
+		player.playerAttributes.angleSpeed - (World1.worldAttributes.rotationSpeed *(player.playerAttributes.rotationSpeed * 0.7));
+		
+		updatePlayerAngle();
+>>>>>>> origin/master
 		
 	//END MOVEMENT ************************
 	//
@@ -244,8 +258,27 @@ function startPlayerSpin(e:KeyboardEvent):void
 	
 }
 
+<<<<<<< HEAD
 
 
+=======
+function updatePlayerAngle()
+{
+	if(player.playerAttributes.ang <=0)
+	{
+		player.playerAttributes.ang +=360;
+	} 
+	else if(player.playerAttributes.ang >360)
+	{
+		player.playerAttributes.ang -=360;
+	}
+	
+	player.x = (Math.sin(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
+	player.y = (Math.cos(AngleToRadians(player.playerAttributes.ang)) * 163) + 400;
+	
+	editorMenu.playerSpeedOutput.text = player.playerAttributes.ang.toString();
+}
+>>>>>>> origin/master
 
 ]]></script>
                                    </Actionscript>
@@ -259,7 +292,6 @@ function startPlayerSpin(e:KeyboardEvent):void
                                    <Actionscript>
                                         <script><![CDATA[import flash.events.Event;
 import flash.events.KeyboardEvent;
-import flash.geom.Point;
 
 var World1:world_ = new world_;
 World1.worldAttributes = worldAttributes;
@@ -274,52 +306,61 @@ World1.y = 400;
 
 function monitorWorldKeyboardState(e:Event):void {
 	if ((World1.worldAttributes.leftDown == false && World1.worldAttributes.rightDown == false) ||
+<<<<<<< HEAD
 		World1.worldAttributes.leftDown == true && World1.worldAttributes.rightDown == true ||
 		player.jumpReady == false)
+=======
+		(World1.worldAttributes.leftDown == true && World1.worldAttributes.rightDown == true) || player.jumpReady == false)
+>>>>>>> origin/master
 	{
 		
 		if(World1.worldAttributes.rotationSpeed < 0)
-		World1.worldAttributes.rotationSpeed += (player.playerAttributes.rotationSpeed * 25 / World1.worldAttributes.mass);
+		World1.worldAttributes.rotationSpeed += ((player.playerAttributes.rotationSpeed * 25) / World1.worldAttributes.mass);
 		
 		else if (World1.worldAttributes.rotationSpeed > 0)
-		World1.worldAttributes.rotationSpeed -= (player.playerAttributes.rotationSpeed * 25 / World1.worldAttributes.mass);
+		World1.worldAttributes.rotationSpeed -= ((player.playerAttributes.rotationSpeed * 25) / World1.worldAttributes.mass);
 	}
 	else if (
+<<<<<<< HEAD
 			World1.worldAttributes.rotationSpeed <= World1.worldAttributes.maxRotationSpeed && 
 			World1.worldAttributes.rotationSpeed >= -World1.worldAttributes.maxRotationSpeed && 
 			World1.worldAttributes.leftDown == true && World1.worldAttributes.rightDown == false)
+=======
+			World1.worldAttributes.rotationSpeed < World1.worldAttributes.maxRotationSpeed && 
+			World1.worldAttributes.rotationSpeed > -World1.worldAttributes.maxRotationSpeed &&
+			player.jumpReady == true)
+>>>>>>> origin/master
 	{
-		World1.worldAttributes.rotationSpeed -= ((player.playerAttributes.rotationSpeed * 25) / World1.worldAttributes.mass);
-		if (World1.worldAttributes.rotationSpeed < -World1.worldAttributes.maxRotationSpeed){
-			World1.worldAttributes.rotationSpeed = -World1.worldAttributes.maxRotationSpeed;
+		if(World1.worldAttributes.leftDown == true)
+		{
+			World1.worldAttributes.rotationSpeed -= ((player.playerAttributes.rotationSpeed * 25) / World1.worldAttributes.mass);
 		}
-	}
-	else if (
-			World1.worldAttributes.rotationSpeed <= World1.worldAttributes.maxRotationSpeed && 
-			World1.worldAttributes.rotationSpeed >= -World1.worldAttributes.maxRotationSpeed && 
-			World1.worldAttributes.leftDown == false && World1.worldAttributes.rightDown == true)
-	{
-		World1.worldAttributes.rotationSpeed += ((player.playerAttributes.rotationSpeed * 25) / World1.worldAttributes.mass);
-		if (World1.worldAttributes.rotationSpeed > World1.worldAttributes.maxRotationSpeed){
-			World1.worldAttributes.rotationSpeed = World1.worldAttributes.maxRotationSpeed;
-		} 
+		if(World1.worldAttributes.rightDown == true)
+		{
+			World1.worldAttributes.rotationSpeed += ((player.playerAttributes.rotationSpeed * 25) / World1.worldAttributes.mass);
+		}
 	}
 	
 	if(World1.worldAttributes.rotationSpeed > 0.05 || World1.worldAttributes.rotationSpeed < -0.05){
 		World1.rotation += World1.worldAttributes.rotationSpeed;
 	}
+<<<<<<< HEAD
 	editorMenu.worldSpeedOutput.text = World1.worldAttributes.rightDown.toString() + " " + World1.worldAttributes.leftDown.toString();
 	
 	//if(totalCorners >0){
 	//	trace(corners[0].localToGlobal(new Point( 0 , 0 )));
 	//}
+=======
+
+	editorMenu.worldSpeedOutput.text = World1.rotation.toString();
+>>>>>>> origin/master
 }
 
 function stopWorldSpin(e:KeyboardEvent):void{
 	if(e.keyCode == 39) {
 		World1.worldAttributes.leftDown = false;		
 	}
-	else if(e.keyCode == 37) {
+	if(e.keyCode == 37) {
 		World1.worldAttributes.rightDown = false;		
 	}
 }
@@ -328,7 +369,7 @@ function startWorldSpin(e:KeyboardEvent):void{
 	if(e.keyCode == 39) {
 		World1.worldAttributes.leftDown = true;		
 	}
-	else if(e.keyCode == 37) {
+	if(e.keyCode == 37) {
 		World1.worldAttributes.rightDown = true;		
 	}
 }
@@ -338,7 +379,7 @@ function startWorldSpin(e:KeyboardEvent):void{
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
-                    <DOMLayer name="Block Script" color="#4F80FF" current="true" isSelected="true" autoNamed="false">
+                    <DOMLayer name="Block Script" color="#4F80FF" autoNamed="false">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <Actionscript>
@@ -706,11 +747,34 @@ function doThat( x ){
      </persistentData>
      <PrinterSettings/>
      <publishHistory>
+<<<<<<< HEAD
           <PublishItem publishSize="11598" publishTime="1464919214" publishDebug="true"/>
           <PublishItem publishSize="11340" publishTime="1464919129" publishDebug="true"/>
           <PublishItem publishSize="11265" publishTime="1464917779" publishDebug="true"/>
           <PublishItem publishSize="10066" publishTime="1464913154"/>
           <PublishItem publishSize="9789" publishTime="1464907895"/>
           <PublishItem publishSize="10380" publishTime="1463525429" publishDebug="true"/>
+=======
+          <PublishItem publishSize="21385" publishTime="1469742278" publishDebug="true"/>
+          <PublishItem publishSize="11631" publishTime="1468539242" publishDebug="true"/>
+          <PublishItem publishSize="11619" publishTime="1468539199" publishDebug="true"/>
+          <PublishItem publishSize="11629" publishTime="1468539127" publishDebug="true"/>
+          <PublishItem publishSize="11619" publishTime="1468538990" publishDebug="true"/>
+          <PublishItem publishSize="11620" publishTime="1468537172" publishDebug="true"/>
+          <PublishItem publishSize="11626" publishTime="1468534598" publishDebug="true"/>
+          <PublishItem publishSize="11609" publishTime="1468534097" publishDebug="true"/>
+          <PublishItem publishSize="11611" publishTime="1468534085" publishDebug="true"/>
+          <PublishItem publishSize="11611" publishTime="1468534074" publishDebug="true"/>
+          <PublishItem publishSize="11613" publishTime="1468534051" publishDebug="true"/>
+          <PublishItem publishSize="11599" publishTime="1468533932" publishDebug="true"/>
+          <PublishItem publishSize="11598" publishTime="1468533906" publishDebug="true"/>
+          <PublishItem publishSize="11598" publishTime="1468533891" publishDebug="true"/>
+          <PublishItem publishSize="11610" publishTime="1468533592" publishDebug="true"/>
+          <PublishItem publishSize="11611" publishTime="1468533457" publishDebug="true"/>
+          <PublishItem publishSize="11628" publishTime="1468533007" publishDebug="true"/>
+          <PublishItem publishSize="11626" publishTime="1468532688" publishDebug="true"/>
+          <PublishItem publishSize="11625" publishTime="1468532340" publishDebug="true"/>
+          <PublishItem publishSize="11631" publishTime="1468532291" publishDebug="true"/>
+>>>>>>> origin/master
      </publishHistory>
 </DOMDocument>
